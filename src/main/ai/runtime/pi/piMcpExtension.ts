@@ -30,7 +30,7 @@ export function createPiMcpExtension(
       servers: [...runtimeServers.keys()].map((name) => ({
         name,
         scope: 'extension' as const,
-        source: 'Cherry Studio',
+        source: 'WAT GBT - Aİ',
         config: {
           command: 'cherry-in-memory',
           exposure: name === 'automation' ? ('direct' as const) : ('codemode' as const),

@@ -70,7 +70,7 @@ export class AppService extends BaseService {
     } else if (isLinux) {
       const autostartDir = AbsoluteFilePathSchema.parse(application.getPath('sys.appdata.autostart'))
       const desktopFile = AbsoluteFilePathSchema.parse(
-        path.join(autostartDir, isDev ? 'cherry-studio-dev.desktop' : 'cherry-studio.desktop')
+        path.join(autostartDir, isDev ? 'wat-gbt-ai-dev.desktop' : 'wat-gbt-ai.desktop')
       )
 
       if (isLaunchOnBoot) {
@@ -86,10 +86,10 @@ export class AppService extends BaseService {
         // Create desktop file content
         const desktopContent = `[Desktop Entry]
   Type=Application
-  Name=Cherry Studio
+  Name=WAT GBT - Aİ
   Comment=A powerful AI assistant for producer.
   Exec=${executablePath}
-  Icon=cherrystudio
+  Icon=wat-gbt-ai
   Terminal=false
   StartupNotify=false
   Categories=Development;Utility;

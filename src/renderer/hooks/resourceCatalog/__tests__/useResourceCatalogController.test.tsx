@@ -400,14 +400,14 @@ describe('useResourceCatalogController', () => {
     const protectedAgent = {
       id: 'agent-protected',
       type: 'agent',
-      name: 'Cherry Assistant',
+      name: 'WAT Asistan',
       description: '',
       avatar: 'C',
       createdAt: '2026-09-16T00:00:00.000Z',
       updatedAt: '2026-09-16T00:00:00.000Z',
       raw: {
         id: 'agent-protected',
-        name: 'Cherry Assistant',
+        name: 'WAT Asistan',
         configuration: { builtin_role: 'assistant' }
       }
     } as unknown as ResourceItem

@@ -132,8 +132,8 @@ describe('configureChromiumFlags', () => {
       configureChromiumFlags()
 
       expect(appendSwitchMock).toHaveBeenCalledWith('wm-window-animations-disabled')
-      expect(appendSwitchMock).not.toHaveBeenCalledWith('class', 'CherryStudio')
-      expect(appendSwitchMock).not.toHaveBeenCalledWith('name', 'CherryStudio')
+      expect(appendSwitchMock).not.toHaveBeenCalledWith('class', 'wat-gbt-ai')
+      expect(appendSwitchMock).not.toHaveBeenCalledWith('name', 'wat-gbt-ai')
       expect(appendSwitchMock).not.toHaveBeenCalledWith('enable-features', 'GlobalShortcutsPortal')
     })
 
@@ -146,8 +146,8 @@ describe('configureChromiumFlags', () => {
       const { configureChromiumFlags } = await loadModule()
       configureChromiumFlags()
 
-      expect(appendSwitchMock).toHaveBeenCalledWith('class', 'CherryStudio')
-      expect(appendSwitchMock).toHaveBeenCalledWith('name', 'CherryStudio')
+      expect(appendSwitchMock).toHaveBeenCalledWith('class', 'wat-gbt-ai')
+      expect(appendSwitchMock).toHaveBeenCalledWith('name', 'wat-gbt-ai')
       expect(appendSwitchMock).not.toHaveBeenCalledWith('enable-features', 'GlobalShortcutsPortal')
       expect(appendSwitchMock).not.toHaveBeenCalledWith('wm-window-animations-disabled')
     })
@@ -162,8 +162,8 @@ describe('configureChromiumFlags', () => {
       configureChromiumFlags()
 
       expect(appendSwitchMock).toHaveBeenCalledWith('enable-features', 'GlobalShortcutsPortal')
-      expect(appendSwitchMock).toHaveBeenCalledWith('class', 'CherryStudio')
-      expect(appendSwitchMock).toHaveBeenCalledWith('name', 'CherryStudio')
+      expect(appendSwitchMock).toHaveBeenCalledWith('class', 'wat-gbt-ai')
+      expect(appendSwitchMock).toHaveBeenCalledWith('name', 'wat-gbt-ai')
     })
 
     it('macOS: appends NO platform-specific switches', async () => {
@@ -175,8 +175,8 @@ describe('configureChromiumFlags', () => {
       configureChromiumFlags()
 
       expect(appendSwitchMock).not.toHaveBeenCalledWith('wm-window-animations-disabled')
-      expect(appendSwitchMock).not.toHaveBeenCalledWith('class', 'CherryStudio')
-      expect(appendSwitchMock).not.toHaveBeenCalledWith('name', 'CherryStudio')
+      expect(appendSwitchMock).not.toHaveBeenCalledWith('class', 'wat-gbt-ai')
+      expect(appendSwitchMock).not.toHaveBeenCalledWith('name', 'wat-gbt-ai')
       expect(appendSwitchMock).not.toHaveBeenCalledWith('enable-features', 'GlobalShortcutsPortal')
     })
   })

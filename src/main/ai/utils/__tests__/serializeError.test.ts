@@ -54,7 +54,7 @@ describe('serializeError', () => {
   // error the diagnostic detail exists to replace (#20343).
   it('retains the OCR diagnostic detail fields across the serialization boundary', () => {
     const error = new Error(
-      "The selected model isn't configured for image input, and Cherry Studio couldn't extract readable text from the attachment. Enable Vision for this model in Provider Settings, choose another vision-capable model, or remove the image and try again."
+      "The selected model isn't configured for image input, and WAT GBT - Aİ couldn't extract readable text from the attachment. Enable Vision for this model in Provider Settings, choose another vision-capable model, or remove the image and try again."
     )
     Object.assign(error, {
       name: 'NonVisionImageOcrError',

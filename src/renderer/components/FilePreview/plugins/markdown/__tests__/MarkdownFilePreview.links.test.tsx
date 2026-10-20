@@ -133,12 +133,12 @@ describe('MarkdownFilePreview links', () => {
   })
 
   it('keeps external links out of the local file opener', async () => {
-    mocks.readText.mockResolvedValue('[Cherry Studio](https://cherry-ai.com)')
+    mocks.readText.mockResolvedValue('[WAT GBT - Aİ](https://cherry-ai.com)')
     const openFile = vi.fn()
 
     renderArtifactPreview(openFile)
 
-    const link = await screen.findByRole('link', { name: 'Cherry Studio' })
+    const link = await screen.findByRole('link', { name: 'WAT GBT - Aİ' })
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noreferrer')
     expect(openFile).not.toHaveBeenCalled()

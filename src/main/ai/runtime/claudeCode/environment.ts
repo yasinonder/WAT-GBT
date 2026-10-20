@@ -184,7 +184,7 @@ export async function buildEnvironment(
     CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT: '1',
     CHERRY_STUDIO_BUN_PATH: bunPath,
     CHERRY_STUDIO_SKILLS_DIR: application.getPath('feature.agents.skills'),
-    // Identify Cherry Studio in the agent CLI's User-Agent (appends
+    // Identify WAT GBT - Aİ in the agent CLI's User-Agent (appends
     // `client-app/cherry-studio/<version>`) so gateways and analytics can
     // distinguish agent-mode traffic from a standalone Claude Code CLI.
     // Documented in the Agent SDK `Options.env` JSDoc.

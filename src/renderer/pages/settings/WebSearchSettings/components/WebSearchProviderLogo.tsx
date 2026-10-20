@@ -22,7 +22,7 @@ const WebSearchProviderLogo: FC<WebSearchProviderLogoProps> = ({ providerId, pro
         src={AppLogo}
         alt=""
         draggable={false}
-        className={cn('inline-block shrink-0 rounded-[20%] object-cover', className)}
+        className={cn('inline-block shrink-0 rounded-none object-contain', className)}
         style={{ width: size, height: size }}
       />
     )

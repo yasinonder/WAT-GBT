@@ -1,7 +1,7 @@
 /**
  * What each built-in Agent is allowed to reach — declared by the Agent, read by the runtimes.
  *
- * Before this table the same statements ("Cherry Support is closed to its own bundle", "Cherry
+ * Before this table the same statements ("WAT Destek is closed to its own bundle", "Cherry
  * Assistant has host privileges when local") were re-derived as `builtin_role ===` branches in each
  * runtime, and had already drifted apart. A runtime must not ask which Agent this is; it reads a
  * capability.
@@ -33,7 +33,7 @@ export interface AgentCapabilities {
   environment: 'open' | 'sealed'
   /** Read every knowledge base, not just those bound to the Agent or picked in the composer. */
   allKnowledgeBases: boolean
-  /** Tools that act on Cherry Studio itself. Absent for an Agent with no host access. */
+  /** Tools that act on WAT GBT - Aİ itself. Absent for an Agent with no host access. */
   hostTools?: {
     /** Omit for the default assistant tool set. */
     tools?: readonly AssistantToolName[]

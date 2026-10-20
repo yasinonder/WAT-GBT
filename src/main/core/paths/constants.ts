@@ -18,7 +18,7 @@ import path from 'node:path'
 
 import { app } from 'electron'
 
-export const CHERRY_HOME_DIRNAME = '.cherrystudio'
+export const CHERRY_HOME_DIRNAME = '.wat-gbt-ai'
 
 function resolveDevProfileRoot(): string | undefined {
   if (app.isPackaged) return undefined

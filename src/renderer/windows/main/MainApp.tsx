@@ -44,7 +44,7 @@ const OnboardingPage = lazy(() => import('./onboarding/OnboardingPage'))
 function BootFallback(): React.ReactElement {
   return (
     <div className="fixed inset-0 flex items-center justify-center">
-      <img src={AppLogo} alt="" className="w-25 rounded-full" />
+      <img src={AppLogo} alt="" className="w-25 rounded-none object-contain" />
     </div>
   )
 }

@@ -19,7 +19,7 @@ import type { PersistAssistantInput, PersistedAssistant, PersistenceBackend } fr
 const logger = loggerService.withContext('AgentSessionMessageBackend')
 
 export interface AgentSessionMessageBackendOptions {
-  /** Cherry Studio agent-session id. */
+  /** WAT GBT - Aİ agent-session id. */
   sessionId: string
   /** Existing assistant placeholder id to finalize. */
   assistantMessageId: string

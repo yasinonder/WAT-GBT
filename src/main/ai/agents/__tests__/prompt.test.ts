@@ -211,14 +211,14 @@ Always cite primary sources.`
 
   it('includes memory/FACT.md in memories section', async () => {
     setupFiles({
-      [posix('/workspace/memory/FACT.md')]: '# Active Projects\n\n- Cherry Studio'
+      [posix('/workspace/memory/FACT.md')]: '# Active Projects\n\n- WAT GBT - Aİ'
     })
 
     const { context } = await builder.buildPromptParts(posix('/workspace'))
     const result = context + '\n' + (await builder.buildMemoriesSection(posix('/workspace')))
 
     expect(result).toContain('<facts>')
-    expect(result).toContain('Cherry Studio')
+    expect(result).toContain('WAT GBT - Aİ')
     expect(result).toContain('</facts>')
   })
 
@@ -226,7 +226,7 @@ Always cite primary sources.`
     setupFiles({
       [posix('/workspace/SOUL.md')]: 'Be concise.',
       [posix('/workspace/USER.md')]: 'Name: V',
-      [posix('/workspace/memory/FACT.md')]: 'Project: Cherry Studio'
+      [posix('/workspace/memory/FACT.md')]: 'Project: WAT GBT - Aİ'
     })
 
     const result = await builder.buildMemoriesSection(posix('/workspace'))
@@ -234,7 +234,7 @@ Always cite primary sources.`
     expect(result).toContain('<agent_identity>')
     expect(result).toContain('Be concise.')
     expect(result).toContain('Name: V')
-    expect(result).toContain('Project: Cherry Studio')
+    expect(result).toContain('Project: WAT GBT - Aİ')
     expect(result).not.toContain('## Autonomy Tools')
   })
 

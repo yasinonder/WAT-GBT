@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useSearch } from '@tanstack/react-router'
 import { debounce } from 'es-toolkit/compat'
-import { BadgeQuestionMark, Briefcase, Bug, Building2, Github, Globe, Mail, MessageSquareText, Rss } from 'lucide-react'
+import { BadgeQuestionMark, Bug, FileText, Github, Globe, MessageSquareText, Rss } from 'lucide-react'
 import type { FC, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -33,7 +33,6 @@ import UpdateDialogPopup from '@renderer/components/UpdateDialogPopup'
 import { useAppUpdateState } from '@renderer/hooks/useAppUpdateState'
 import { useOpenReleaseNotes } from '@renderer/hooks/useOpenReleaseNotes'
 import { useTheme } from '@renderer/hooks/useTheme'
-import i18n from '@renderer/i18n/resolver'
 import { ipcApi } from '@renderer/ipc'
 import { toast } from '@renderer/services/toast'
 import { openExternalWebsite } from '@renderer/services/website'
@@ -110,21 +109,8 @@ const AboutSettings: FC = () => {
     void openExternalWebsite(url)
   }
 
-  const mailto = async () => {
-    const email = 'support@cherry-ai.com'
-    const subject = 'Cherry Studio Feedback'
-    const version = (await ipcApi.request('app.get_info')).version
-    const platform = window.electron.process.platform
-    const url = `mailto:${email}?subject=${subject}&body=%0A%0AVersion: ${version} | Platform: ${platform}`
-    onOpenWebsite(url)
-  }
-
   const debug = async () => {
     await ipcApi.request('system.toggle_dev_tools')
-  }
-
-  const showEnterprise = async () => {
-    onOpenWebsite('https://enterprise.cherry-ai.com')
   }
 
   const currentChannelByVersion =
@@ -195,8 +181,7 @@ const AboutSettings: FC = () => {
   }, [])
 
   const onOpenDocs = () => {
-    const isChinese = i18n.language.startsWith('zh')
-    void openExternalWebsite(isChinese ? 'https://docs.cherry-ai.com/' : 'https://docs.cherry-ai.com/docs/en-us')
+    void openExternalWebsite('https://github.com/yasinonder/WAT-GBT#kullanım')
   }
 
   const testChannels = getAvailableTestChannels()
@@ -214,7 +199,7 @@ const AboutSettings: FC = () => {
           <button
             type="button"
             aria-label={t('settings.about.repository')}
-            onClick={() => onOpenWebsite('https://github.com/CherryHQ/cherry-studio')}
+            onClick={() => onOpenWebsite('https://github.com/yasinonder/WAT-GBT')}
             className="inline-flex items-center justify-center rounded-md p-1 text-foreground transition-colors hover:bg-muted">
             <Github aria-hidden="true" className="size-5" />
           </button>
@@ -227,7 +212,7 @@ const AboutSettings: FC = () => {
             <button
               type="button"
               aria-label={t('settings.about.repository')}
-              onClick={() => onOpenWebsite('https://github.com/CherryHQ/cherry-studio')}
+              onClick={() => onOpenWebsite('https://github.com/yasinonder/WAT-GBT')}
               className="relative cursor-pointer">
               <span aria-hidden="true">
                 {appUpdateState.downloading && appUpdateState.downloadProgress > 0 && (
@@ -242,17 +227,17 @@ const AboutSettings: FC = () => {
                     />
                   </div>
                 )}
-                <LogoAvatar logo={AppLogo} size={72} className="rounded-full" alt="" />
+                <LogoAvatar logo={AppLogo} size={72} className="rounded-none object-contain" alt="" />
               </span>
             </button>
 
             <div className="flex min-h-18 flex-col items-start justify-center">
-              <div className="mb-1 text-lg font-bold text-foreground">Cherry Studio</div>
+              <div className="mb-1 text-lg font-bold text-foreground">{t('app.brand.name')}</div>
               <div className="text-muted-foreground text-sm">{t('settings.about.description')}</div>
               <button
                 type="button"
                 aria-label={t('settings.about.releases.title')}
-                onClick={() => onOpenWebsite('https://github.com/CherryHQ/cherry-studio/releases')}
+                onClick={() => onOpenWebsite('https://github.com/yasinonder/WAT-GBT/releases')}
                 className="mt-1.5">
                 <Badge className="cursor-pointer rounded-md border-primary/20 bg-primary/10 px-1.5 py-0 text-[11px] leading-4 text-primary transition-colors hover:bg-primary/15">
                   v{version}
@@ -356,7 +341,7 @@ const AboutSettings: FC = () => {
           icon={<Globe className="size-4.5" />}
           title={t('settings.about.website.title')}
           actionLabel={t('settings.about.website.button')}
-          onAction={() => onOpenWebsite('https://cherry-ai.com')}
+          onAction={() => onOpenWebsite('https://github.com/yasinonder/WAT-GBT')}
         />
         <Divider className="my-3" />
         <AboutActionRow
@@ -367,24 +352,10 @@ const AboutSettings: FC = () => {
         />
         <Divider className="my-3" />
         <AboutActionRow
-          icon={<Building2 className="size-4.5" />}
-          title={t('settings.about.enterprise.title')}
+          icon={<FileText className="size-4.5" />}
+          title={t('app.brand.licenses')}
           actionLabel={t('settings.about.website.button')}
-          onAction={showEnterprise}
-        />
-        <Divider className="my-3" />
-        <AboutActionRow
-          icon={<Mail className="size-4.5" />}
-          title={t('settings.about.contact.title')}
-          actionLabel={t('settings.about.contact.button')}
-          onAction={mailto}
-        />
-        <Divider className="my-3" />
-        <AboutActionRow
-          icon={<Briefcase className="size-4.5" />}
-          title={t('settings.about.careers.title')}
-          actionLabel={t('settings.about.careers.button')}
-          onAction={() => onOpenWebsite('https://www.cherry-ai.com/careers')}
+          onAction={() => onOpenWebsite('https://github.com/yasinonder/WAT-GBT/blob/main/NOTICE.txt')}
         />
         <Divider className="my-3" />
         <AboutActionRow

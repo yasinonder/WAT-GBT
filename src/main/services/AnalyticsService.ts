@@ -7,7 +7,7 @@ import { createLatestReconciler, type LatestReconciler } from '@main/core/concur
 import { type Activatable, BaseService, Injectable, Phase, ServicePhase } from '@main/core/lifecycle'
 import { isDataCollectionConsented } from '@main/utils/privacyConsent'
 import { generateUserAgent, getClientId } from '@main/utils/systemInfo'
-import { APP_NAME } from '@shared/utils/constants'
+import { APP_HTTP_NAME } from '@shared/utils/constants'
 
 const logger = loggerService.withContext('AnalyticsService')
 
@@ -116,7 +116,7 @@ export class AnalyticsService extends BaseService implements Activatable {
       headers: {
         'User-Agent': generateUserAgent(),
         'Client-Id': clientId,
-        'App-Name': APP_NAME,
+        'App-Name': APP_HTTP_NAME,
         'App-Version': `v${app.getVersion()}`,
         OS: process.platform
       }

@@ -2569,7 +2569,7 @@ describe('buildClaudeCodeSessionSettings', () => {
     expect(settings.allowedTools).toContain('mcp__skills__search_skills')
   })
 
-  it('restricts Cherry Support to its bundled skills without marketplace access', async () => {
+  it('restricts WAT Destek to its bundled skills without marketplace access', async () => {
     const workspacePath = await mkdtemp(path.join(os.tmpdir(), 'support-skill-source-'))
     const workspacePluginManifest = path.join(
       workspacePath,

@@ -28,12 +28,12 @@ describe('resolveAgentCapabilities', () => {
     expect(capabilities.allKnowledgeBases).toBe(false)
   })
 
-  it('closes Cherry Support to its own bundle', () => {
+  it('closes WAT Destek to its own bundle', () => {
     const capabilities = resolveAgentCapabilities({ configuration: { builtin_role: BUILTIN_AGENT_ROLE.SUPPORT } })
     expect(capabilities.environment).toBe('sealed')
   })
 
-  it('withholds arbitrary Agent creation from Cherry Support', () => {
+  it('withholds arbitrary Agent creation from WAT Destek', () => {
     const support = resolveAgentCapabilities({ configuration: { builtin_role: BUILTIN_AGENT_ROLE.SUPPORT } })
     const assistant = resolveAgentCapabilities({ configuration: { builtin_role: BUILTIN_AGENT_ROLE.ASSISTANT } })
 
@@ -58,12 +58,12 @@ describe('resolveAgentCapabilities', () => {
 })
 
 describe('hostToolsEnabled', () => {
-  it.each(AGENT_TYPES)('keeps host tools off channel-linked Cherry Assistant sessions on %s', (type) => {
+  it.each(AGENT_TYPES)('keeps host tools off channel-linked WAT Asistan sessions on %s', (type) => {
     expect(hostToolsEnabled(agentOf(type, BUILTIN_AGENT_ROLE.ASSISTANT), { channelLinked: false })).toBe(true)
     expect(hostToolsEnabled(agentOf(type, BUILTIN_AGENT_ROLE.ASSISTANT), { channelLinked: true })).toBe(false)
   })
 
-  it('keeps Cherry Support host tools on channel-linked sessions, but only on claude-code', () => {
+  it('keeps WAT Destek host tools on channel-linked sessions, but only on claude-code', () => {
     for (const channelLinked of [false, true]) {
       expect(hostToolsEnabled(agentOf('claude-code', BUILTIN_AGENT_ROLE.SUPPORT), { channelLinked })).toBe(true)
       expect(hostToolsEnabled(agentOf('pi', BUILTIN_AGENT_ROLE.SUPPORT), { channelLinked })).toBe(false)

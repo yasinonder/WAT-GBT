@@ -123,7 +123,7 @@ import { autoUpdater } from 'electron-updater'
 import { application } from '@application'
 import { regionService } from '@main/services/RegionService'
 import { UpgradeChannel } from '@shared/data/preference/preferenceTypes'
-import { APP_NAME } from '@shared/utils/constants'
+import { APP_HTTP_NAME } from '@shared/utils/constants'
 
 import { AppUpdaterService } from '../AppUpdaterService'
 
@@ -180,7 +180,7 @@ describe('AppUpdaterService', () => {
         'User-Agent': 'test-user-agent',
         'Cache-Control': 'no-cache',
         'Client-Id': 'test-client-id',
-        'App-Name': APP_NAME,
+        'App-Name': APP_HTTP_NAME,
         'App-Version': 'v1.0.0',
         OS: process.platform,
         'X-Edition': 'global',
@@ -289,7 +289,7 @@ describe('AppUpdaterService', () => {
       await expect(appUpdater.getReleaseHistory()).resolves.toEqual(history)
 
       expect(net.fetch).toHaveBeenCalledWith(
-        'https://releases.cherry-ai.com/release-history.json',
+        'https://github.com/yasinonder/WAT-GBT/releases/latest/download/release-history.json',
         expect.objectContaining({
           headers: expect.objectContaining({
             'App-Version': 'v1.0.0',

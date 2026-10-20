@@ -29,7 +29,7 @@ describe('createBuiltinSkillSession', () => {
     mocks.loadInput.mockReturnValue({
       builtinRole: 'assistant',
       configuration: { avatar: '🍒', permission_mode: 'default', env_vars: {} },
-      name: 'Cherry Assistant',
+      name: 'WAT Asistan',
       preferredModelId: null,
       type: 'claude-code'
     })
@@ -49,7 +49,7 @@ describe('createBuiltinSkillSession', () => {
       .run()
   }
 
-  it('restores Cherry Assistant, enables the target Skill, and creates one system session atomically', () => {
+  it('restores WAT Asistan, enables the target Skill, and creates one system session atomically', () => {
     seedSkill()
 
     const session = createBuiltinSkillSession('skill-1')

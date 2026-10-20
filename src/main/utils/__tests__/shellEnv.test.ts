@@ -190,7 +190,7 @@ describe('shellEnv – Windows registry PATH', () => {
     expect(env.Path).toContain('C:\\PlainPath')
   })
 
-  // -- Cherry Studio tool directories appended ------------------------------
+  // -- WAT GBT - Aİ tool directories appended ------------------------------
 
   it('should preserve the unmodified user environment for system tools', async () => {
     process.env.MISE_DATA_DIR = 'C:\\Users\\TestUser\\mise-data'
@@ -204,7 +204,7 @@ describe('shellEnv – Windows registry PATH', () => {
     expect(env.Path).not.toContain('.cherrystudio')
   })
 
-  it('should append Cherry Studio tool directories to PATH', async () => {
+  it('should append WAT GBT - Aİ tool directories to PATH', async () => {
     mockRegistryPaths({ system: 'C:\\Windows' })
 
     const env = await refreshShellEnv()

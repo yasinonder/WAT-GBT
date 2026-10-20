@@ -79,7 +79,7 @@ export class TrayService extends BaseService implements Activatable {
       this.tray.setContextMenu(this.contextMenu)
     }
 
-    this.tray.setToolTip('Cherry Studio')
+    this.tray.setToolTip('WAT GBT - Aİ')
 
     this.tray.on('right-click', () => {
       if (this.contextMenu) {

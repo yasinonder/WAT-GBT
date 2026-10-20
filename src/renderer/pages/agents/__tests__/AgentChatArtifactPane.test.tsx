@@ -552,7 +552,7 @@ vi.mock('@renderer/utils/agentSession', () => ({
 
 vi.mock('react-i18next', async (importOriginal) => {
   const translations: Record<string, string> = {
-    'agent.builtin.cherry_support.diagnostics.prepared': 'Cherry Support prepared an editable description.',
+    'agent.builtin.cherry_support.diagnostics.prepared': 'WAT Destek prepared an editable description.',
     'agent.builtin.cherry_support.diagnostics.review': 'Report a problem'
   }
   return {

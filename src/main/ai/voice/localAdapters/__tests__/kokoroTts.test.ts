@@ -41,7 +41,7 @@ describe('Kokoro Chinese-English speech', () => {
     ['zm_001', '58'],
     ['zm_045', '102']
   ])('preserves mixed text and maps %s to the published speaker ID %s', async (voice, sid) => {
-    const text = '你好，Cherry Studio supports Windows 和 Linux。'
+    const text = '你好，WAT GBT - Aİ supports Windows 和 Linux。'
     synthesize.mockImplementation(async (modelId, input) => {
       expect(modelId).toBe(KOKORO_TTS_BUNDLE_ID)
       expect(input).toMatchObject({ text, voice: sid, language: 'zh-CN', speed: 1.25 })

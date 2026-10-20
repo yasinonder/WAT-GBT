@@ -173,7 +173,7 @@ describe('AgentToolRenderer', () => {
     'agent.toolPermission.reasonLabel': 'Reason for rejection (optional)',
     'agent.askUserQuestion.title': 'Questions from Agent',
     'agent.askUserQuestion.answered': 'answered',
-    'agent.builtin.cherry_support.diagnostics.prepared': 'Cherry Support prepared an editable description.',
+    'agent.builtin.cherry_support.diagnostics.prepared': 'WAT Destek prepared an editable description.',
     'agent.builtin.cherry_support.diagnostics.review': 'Review diagnostic report',
     'agent.sidebar_title': 'Agents',
     'common.create_success': 'Created successfully',
@@ -995,7 +995,7 @@ describe('AgentToolRenderer', () => {
 
       render(<MessageTools toolResponse={preparedResponse} />)
 
-      expect(screen.getByText('Cherry Support prepared an editable description.')).toBeInTheDocument()
+      expect(screen.getByText('WAT Destek prepared an editable description.')).toBeInTheDocument()
       await user.click(screen.getByRole('button', { name: 'Review diagnostic report' }))
       expect(openReport).toHaveBeenCalledWith('Draft from this tool call')
       expect(navigateToRoute).not.toHaveBeenCalled()
@@ -1005,7 +1005,7 @@ describe('AgentToolRenderer', () => {
     it('shows the prepared state without a dead action when no launcher is available', () => {
       render(<MessageTools toolResponse={preparedResponse} />)
 
-      expect(screen.getByText('Cherry Support prepared an editable description.')).toBeInTheDocument()
+      expect(screen.getByText('WAT Destek prepared an editable description.')).toBeInTheDocument()
       expect(screen.queryByRole('button', { name: 'Review diagnostic report' })).not.toBeInTheDocument()
     })
   })

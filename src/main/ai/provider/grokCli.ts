@@ -60,7 +60,7 @@ export function pickGrokClientVersion(fileContents: string | null, floor: string
  * is user-owned and same-user readable from the Electron main process). Honors
  * `GROK_CLIENT_VERSION_OVERRIDE` for emergency ops. Falls back to the floor
  * constant on any failure. Result is captured at module load and reused for
- * the lifetime of the process; restart Cherry Studio after updating the Grok
+ * the lifetime of the process; restart WAT GBT - Aİ after updating the Grok
  * CLI to pick up the new version.
  */
 export function resolveGrokClientVersion(): string {

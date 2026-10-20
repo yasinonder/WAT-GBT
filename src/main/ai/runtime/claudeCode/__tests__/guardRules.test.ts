@@ -25,7 +25,7 @@ vi.mock('../skillDependencies', () => ({
 }))
 
 vi.mock('@main/ai/toolApproval/userDataSqliteGuard', () => ({
-  USER_DATA_SQLITE_GUARD_REASON: 'Access to SQLite files inside Cherry Studio user data is blocked.',
+  USER_DATA_SQLITE_GUARD_REASON: 'Access to SQLite files inside WAT GBT - Aİ user data is blocked.',
   evaluateUserDataSqliteGuard: mocks.evaluateUserDataSqliteGuard
 }))
 
@@ -372,7 +372,7 @@ describe('CLAUDE_TOOL_GUARD_RULES', () => {
       const decision = await evaluate(makeCtx({ ...supportCtx, input: { command: 'ls -la' } }))
       expect(decision).toEqual({
         effect: 'ask',
-        reason: 'Cherry Support shell commands require live per-call user approval.',
+        reason: 'WAT Destek shell commands require live per-call user approval.',
         ruleId: 'support-bash'
       })
     })
@@ -521,7 +521,7 @@ describe('CLAUDE_TOOL_GUARD_RULES', () => {
         ).resolves.toEqual({
           effect: 'deny',
           ruleId: 'user-data-sqlite-write',
-          reason: 'Access to SQLite files inside Cherry Studio user data is blocked.'
+          reason: 'Access to SQLite files inside WAT GBT - Aİ user data is blocked.'
         })
         expect(mocks.evaluateUserDataSqliteGuard).toHaveBeenCalledWith(
           expect.objectContaining({ runtime: 'claude-code', toolName: 'Write' })

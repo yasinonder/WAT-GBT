@@ -23,7 +23,7 @@ describe('ensureBuiltinAgent command', () => {
     mocks.appGet.mockReturnValue({ get: mocks.preferenceGet })
     mocks.preferenceGet.mockReturnValue('anthropic::claude-sonnet-4-5')
     mocks.loadDefaults.mockReturnValue({
-      name: 'Cherry Support',
+      name: 'WAT Destek',
       configuration: {
         avatar: '🧰',
         permission_mode: 'default',
@@ -41,7 +41,7 @@ describe('ensureBuiltinAgent command', () => {
     expect(mocks.appGet).toHaveBeenCalledWith('PreferenceService')
     expect(mocks.preferenceGet).toHaveBeenCalledWith('chat.default_model_id')
     expect(mocks.ensure).toHaveBeenCalledWith({
-      name: 'Cherry Support',
+      name: 'WAT Destek',
       builtinRole: 'support',
       preferredModelId: 'anthropic::claude-sonnet-4-5',
       type: 'claude-code',

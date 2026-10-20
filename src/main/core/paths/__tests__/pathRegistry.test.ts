@@ -53,8 +53,8 @@ describe('buildPathRegistry', () => {
     ['win32', 'x64', false, '/mock/app/packages/system-speech/dist/native/win32-x64/cherry-system-speech.exe'],
     ['win32', 'x64', true, '/mock/resources/system-speech/cherry-system-speech.exe'],
     ['darwin', 'arm64', false, '/mock/app/packages/system-speech/dist/native/darwin-arm64/cherry-system-speech'],
-    ['darwin', 'x64', true, '/mock/Cherry Studio.app/Contents/Helpers/cherry-system-speech'],
-    ['darwin', 'arm64', true, '/mock/Cherry Studio.app/Contents/Helpers/cherry-system-speech']
+    ['darwin', 'x64', true, '/mock/WAT GBT - Aİ.app/Contents/Helpers/cherry-system-speech'],
+    ['darwin', 'arm64', true, '/mock/WAT GBT - Aİ.app/Contents/Helpers/cherry-system-speech']
   ] as const)('resolves the %s/%s packaged=%s system speech helper', (platform, arch, packaged, expected) => {
     vi.stubGlobal(
       'process',
@@ -62,7 +62,7 @@ describe('buildPathRegistry', () => {
         platform: { value: platform },
         arch: { value: arch },
         resourcesPath: {
-          value: platform === 'darwin' ? '/mock/Cherry Studio.app/Contents/Resources' : '/mock/resources'
+          value: platform === 'darwin' ? '/mock/WAT GBT - Aİ.app/Contents/Resources' : '/mock/resources'
         }
       })
     )
@@ -138,7 +138,7 @@ describe('buildPathRegistry', () => {
     const registry = buildPathRegistry()
 
     expect(registry['feature.mcp.resource_results.temp']).toBe(
-      path.join('/mock/temp', 'CherryStudio', 'mcp-resource-results')
+      path.join('/mock/temp', 'WAT-GBT-AI', 'mcp-resource-results')
     )
   })
 
@@ -182,7 +182,7 @@ describe('buildPathRegistry', () => {
     expect(registry['sys.desktop']).toBe('/mock/desktop')
   })
 
-  it('registers the Cherry Assistant product manifest inside bundled resources', () => {
+  it('registers the WAT Asistan product manifest inside bundled resources', () => {
     const registry = buildPathRegistry()
 
     expect(registry['feature.agents.assistant.manifest.file']).toBe(
@@ -463,7 +463,7 @@ describe('pathRegistry.shouldAutoEnsure', () => {
       expect(shouldAutoEnsure('app.database.migrations')).toBe(false)
     })
 
-    it('returns false for the bundled Cherry Assistant product manifest', () => {
+    it('returns false for the bundled WAT Asistan product manifest', () => {
       expect(shouldAutoEnsure('feature.agents.assistant.manifest.file')).toBe(false)
     })
 

@@ -643,7 +643,7 @@ describe('buildClaudeCodeQueryRequestForAgentSession resume-token precedence', (
     const request = await buildClaudeCodeQueryRequestForAgentSession('session-1')
 
     expect(request?.settings.env?.ANTHROPIC_CUSTOM_HEADERS).toBe(
-      'HTTP-Referer: https://cherry-ai.com\nX-Title: Cherry Studio'
+      'HTTP-Referer: https://cherry-ai.com\nX-Title: WAT GBT - Aİ'
     )
   })
 

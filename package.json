@@ -1,10 +1,10 @@
 {
-  "name": "CherryStudio",
+  "name": "wat-gbt-ai",
   "version": "2.1.7",
   "private": true,
-  "description": "A powerful AI assistant for producer.",
-  "homepage": "https://github.com/CherryHQ/cherry-studio",
-  "author": "support@cherry-ai.com",
+  "description": "WAT MOTOR A.Ş. — Kurumsal yapay zekâ çalışma alanı",
+  "homepage": "https://github.com/yasinonder/WAT-GBT",
+  "author": "WAT MOTOR A.Ş.",
   "main": "./out/main/main.js",
   "scripts": {
     "agent-notes:check-transition": "tsx scripts/docsGovernance/verify-agent-note-transitions.ts",
@@ -595,5 +595,6 @@
     "node": ">=24.12.0"
   },
   "packageManager": "pnpm@12.6.0+sha512.3ef68f951cb111ac204b4a5a16f0b2ddf0da56a96e0413e81d855d9f0b55ef926714709028e1cd00c405c2c5fb7b9e8ec4dc46777c805d0373c2f2ff00fd20ec",
-  "desktopName": "CherryStudio.desktop"
+  "desktopName": "WAT-GBT-AI.desktop",
+  "productName": "WAT GBT - Aİ"
 }

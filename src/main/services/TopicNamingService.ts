@@ -8,7 +8,7 @@ import type { AiGenerateRequest, AsInProcessChat } from '@main/ai/AiService'
 import { WindowType } from '@main/core/window/types'
 import { messageService } from '@main/data/services/MessageService'
 import { getAppLanguage } from '@main/i18n'
-import { CHERRYAI_DEFAULT_UNIQUE_MODEL_ID } from '@shared/data/presets/cherryai'
+import { CHERRYAI_PROVIDER_ID } from '@shared/data/presets/cherryai'
 import type { Message, MessageData, UIMessage } from '@shared/data/types/message'
 import { parseUniqueModelId, type UniqueModelId, UniqueModelIdSchema } from '@shared/data/types/model'
 import type { Topic } from '@shared/data/types/topic'
@@ -209,6 +209,7 @@ export class TopicNamingService {
       ]
 
       const uniqueModelId = this.resolveNamingModelId()
+      if (!uniqueModelId) return
       const title = await this.generateSummaryTitle(
         uniqueModelId,
         topicId,
@@ -234,7 +235,7 @@ export class TopicNamingService {
    * first persisted user message. Fire-and-forget callers rely on this method
    * to isolate errors and re-read before writing so manual renames win races.
    *
-   * @param sessionId Cherry Studio agent session id.
+   * @param sessionId WAT GBT - Aİ agent session id.
    * @param userMessage Persisted message data, or already-extracted user text.
    */
   maybeRenameAgentSessionFromFirstUserMessage(sessionId: string, userMessage: MessageData | string | undefined): void {
@@ -273,7 +274,7 @@ export class TopicNamingService {
    * configuration (MCP tools, web search, knowledge bases) to the title.
    *
    * @param agentId    Agent id, used for failure logging context only.
-   * @param sessionId  Cherry Studio session id.
+   * @param sessionId  WAT GBT - Aİ session id.
    * @param userText   Plain text of the persisted user turn, extracted by
    *                   AgentSessionRuntimeService from the saved user message.
    * @param finalMessage Accumulated assistant UIMessage for this turn.
@@ -306,6 +307,7 @@ export class TopicNamingService {
       if (session.isNameManuallyEdited) return
       if (!canAutoRenameAgentSessionName(session.name, userText)) return
       const uniqueModelId = this.resolveNamingModelId()
+      if (!uniqueModelId) return
 
       const structuredConversation: StructuredMessage[] = [
         { role: 'user', mainText: cleanMarkdownImages(userText) },
@@ -409,26 +411,23 @@ export class TopicNamingService {
     return (configuredPrompt || FALLBACK_PROMPT).replaceAll('{{language}}', language)
   }
 
-  private resolveNamingModelId(): UniqueModelId {
+  private resolveNamingModelId(): UniqueModelId | null {
     const preferenceService = application.get('PreferenceService')
-
-    const configured =
-      preferenceService.get('feature.quick_assistant.model_id') ?? preferenceService.get('chat.default_model_id')
-    const quickModelId = this.toUsableNamingModelId(configured)
-    if (quickModelId) return quickModelId
-    if (configured != null) {
-      logger.warn('Quick assistant model is not usable for topic naming; falling back to managed CherryAI default', {
-        configured
-      })
+    const candidates = [
+      preferenceService.get('feature.quick_assistant.model_id'),
+      preferenceService.get('chat.default_model_id')
+    ]
+    for (const candidate of candidates) {
+      const modelId = this.toUsableNamingModelId(candidate)
+      if (modelId) return modelId
     }
-
-    return CHERRYAI_DEFAULT_UNIQUE_MODEL_ID
+    return null
   }
 
   /**
    * Validate a `providerId::modelId` candidate for topic naming. Returns the id when usable, else
    * `null`. A candidate is rejected when it fails to parse, its model no longer exists, or its
-   * provider is an external-CLI (agent-only) provider — those reuse a CLI's own login, hold no
+   * service credential is absent, or its provider is an external-CLI (agent-only) provider — those reuse a CLI's own login, hold no
    * app-side credential, and cannot serve a generation request, so they can never name a topic
    * (capability-derived, so any such provider is covered without keying on a specific id).
    */
@@ -437,6 +436,7 @@ export class TopicNamingService {
     if (!parsed.success) return null
 
     const { providerId, modelId } = parseUniqueModelId(parsed.data)
+    if (providerId === CHERRYAI_PROVIDER_ID && !import.meta.env.MAIN_VITE_CHERRYAI_CLIENT_SECRET) return null
     try {
       const provider = providerService.getByProviderId(providerId)
       if (isExternalCliProvider(provider)) return null

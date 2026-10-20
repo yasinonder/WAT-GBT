@@ -1,0 +1,95 @@
+name: WAT Windows Build
+run-name: WAT GBT AI Windows x64 — ${{ github.sha }}
+
+on:
+  push:
+    branches:
+      - codex/wat-gbt-ai-branding
+    paths:
+      - .github/workflows/wat-windows.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wat-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows-x64:
+    if: github.repository == 'yasinonder/WAT-GBT'
+    runs-on: windows-2022
+    timeout-minutes: 90
+    env:
+      CI: "true"
+      NODE_OPTIONS: --max-old-space-size=8192
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+      SENTRY_SOURCE_MAP_UPLOAD: "false"
+      ELECTRON_BUILDER_7Z_FILTER: BCJ
+    steps:
+      - name: Check out WAT source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v5
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify topic naming and affected chat consumers
+        run: pnpm test:main src/main/services/__tests__/TopicNamingService.test.ts src/main/ai/streamManager/context/__tests__/PersistentChatContextProvider.test.ts src/main/ai/streamManager/context/__tests__/AgentChatContextProvider.test.ts src/main/ai/streamManager/__tests__/AiStreamManager.pause.test.ts
+
+      - name: Build Windows x64 installer and portable application
+        run: pnpm build:win:x64 --publish never
+
+      - name: Verify packaged SQLite runtime
+        shell: pwsh
+        run: |
+          $env:ELECTRON_RUN_AS_NODE = '1'
+          $probe = "const assert = require('node:assert/strict'); const path = require('node:path'); const Database = require(path.resolve('dist/win-unpacked/resources/app.asar/node_modules/better-sqlite3')); const db = new Database(':memory:'); assert.equal(db.prepare('SELECT 42 AS value').get().value, 42); db.close(); console.log('Packaged SQLite runtime passed');"
+          $process = Start-Process -FilePath '.\dist\win-unpacked\WAT-GBT-AI.exe' -ArgumentList @('-e', ('"{0}"' -f $probe)) -NoNewWindow -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Packaged SQLite runtime failed: $($process.ExitCode)" }
+
+      - name: Verify outputs and calculate checksums
+        shell: pwsh
+        run: |
+          $setup = @(Get-ChildItem dist -File -Filter '*-x64-setup.exe')
+          $portable = @(Get-ChildItem dist -File -Filter '*-x64-portable.exe')
+          if ($setup.Count -ne 1 -or $portable.Count -ne 1) {
+            throw 'Expected one x64 installer and one x64 portable EXE'
+          }
+          @($setup + $portable) | ForEach-Object {
+            $hash = Get-FileHash $_.FullName -Algorithm SHA256
+            '{0}  {1}' -f $hash.Hash.ToLowerInvariant(), $_.Name
+          } | Set-Content dist/SHA256SUMS.txt -Encoding utf8
+          @("Commit: $env:GITHUB_SHA", "Run: https://github.com/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID", 'Windows x64 preview; application signing and interactive Windows acceptance testing remain pending.') | Set-Content dist/BUILD-INFO.txt -Encoding utf8
+
+      - name: Upload portable application
+        uses: actions/upload-artifact@v7
+        with:
+          name: WAT-GBT-AI-Windows-x64-Portable
+          path: |
+            dist/*-x64-portable.exe
+            dist/SHA256SUMS.txt
+            dist/BUILD-INFO.txt
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: WAT-GBT-AI-Windows-x64-Setup
+          path: |
+            dist/*-x64-setup.exe
+            dist/SHA256SUMS.txt
+            dist/BUILD-INFO.txt
+          if-no-files-found: error
+          retention-days: 14

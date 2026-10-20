@@ -25,13 +25,13 @@ import {
 } from '../BuiltinAgentProvisioner'
 
 const TEMPLATE_AGENT_JSON = JSON.stringify({
-  name: { 'en-US': 'Cherry Assistant', 'zh-CN': 'Cherry Assistant CN' },
+  name: { 'en-US': 'WAT Asistan', 'zh-CN': 'WAT Asistan CN' },
   instructions: { 'en-US': 'English instructions', 'zh-CN': 'Chinese instructions' },
   configuration: { permission_mode: 'default' },
   skills: ['cherry-assistant-guide']
 })
 const SUPPORT_AGENT_JSON = JSON.stringify({
-  name: { 'en-US': 'Cherry Support', 'zh-CN': 'Cherry Support CN' },
+  name: { 'en-US': 'WAT Destek', 'zh-CN': 'WAT Destek CN' },
   instructions: { 'en-US': 'Support instructions', 'zh-CN': 'Chinese support instructions' },
   configuration: { permission_mode: 'acceptEdits' },
   skills: ['cherry-assistant-guide', 'faq-collector', 'cherry-studio-feedback', 'issue-reporter']
@@ -83,7 +83,7 @@ describe('BuiltinAgentProvisioner', () => {
     vi.mocked(app.getLocale).mockReturnValue('zh-CN')
 
     expect(loadBuiltinAgentDefinition('assistant')).toMatchObject({
-      name: 'Cherry Assistant CN',
+      name: 'WAT Asistan CN',
       instructions: 'Chinese instructions'
     })
   })
@@ -93,7 +93,7 @@ describe('BuiltinAgentProvisioner', () => {
     vi.mocked(app.getLocale).mockReturnValue('zh-CN')
 
     expect(loadBuiltinAgentDefinition('assistant')).toMatchObject({
-      name: 'Cherry Assistant',
+      name: 'WAT Asistan',
       instructions: 'English instructions'
     })
   })
@@ -111,9 +111,9 @@ describe('BuiltinAgentProvisioner', () => {
     expect(manifest.name).toBe(BUILTIN_AGENT_PLUGIN_NAME)
   })
 
-  it('loads Cherry Support identity from its own package and plugins from Cherry Assistant', () => {
+  it('loads WAT Destek identity from its own package and plugins from WAT Asistan', () => {
     expect(loadBuiltinAgentDefinition('support')).toMatchObject({
-      name: 'Cherry Support',
+      name: 'WAT Destek',
       instructions: 'Support instructions',
       skills: ['cherry-assistant-guide', 'faq-collector', 'cherry-studio-feedback', 'issue-reporter']
     })
@@ -122,7 +122,7 @@ describe('BuiltinAgentProvisioner', () => {
 
   it('builds creation defaults from the bundled Agent definition', () => {
     expect(loadBuiltinAgentDefaults('assistant')).toEqual({
-      name: 'Cherry Assistant',
+      name: 'WAT Asistan',
       configuration: { permission_mode: 'default', builtin_role: 'assistant' }
     })
   })
@@ -130,7 +130,7 @@ describe('BuiltinAgentProvisioner', () => {
   it('rejects invalid bundled creation defaults', () => {
     writeFile(
       path.join(templateDir, 'agent.json'),
-      JSON.stringify({ name: 'Cherry Assistant', configuration: { permission_mode: 'invalid' } })
+      JSON.stringify({ name: 'WAT Asistan', configuration: { permission_mode: 'invalid' } })
     )
 
     expect(() => loadBuiltinAgentDefaults('assistant')).toThrow(
@@ -146,7 +146,7 @@ describe('BuiltinAgentProvisioner', () => {
     expect(fs.readFileSync(path.join(agentDataPath, 'USER.md'), 'utf-8')).toBe('TEMPLATE_USER')
     expect(fs.readFileSync(path.join(agentDataPath, 'memory', 'FACT.md'), 'utf-8')).toBe('TEMPLATE_FACT')
     expect(result).toEqual({
-      name: 'Cherry Assistant',
+      name: 'WAT Asistan',
       instructions: 'English instructions',
       configuration: { permission_mode: 'default' },
       skills: ['cherry-assistant-guide']

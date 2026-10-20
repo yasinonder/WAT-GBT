@@ -408,7 +408,7 @@ describe('AgentService', () => {
   describe('ensureBuiltinAgent', () => {
     const defaults: Parameters<typeof agentService.ensureBuiltinAgent>[0] = {
       builtinRole: 'assistant',
-      name: 'Cherry Assistant',
+      name: 'WAT Asistan',
       preferredModelId: TEST_MODEL_ID,
       type: 'claude-code',
       configuration: {
@@ -448,7 +448,7 @@ describe('AgentService', () => {
 
       expect(second).toEqual(first)
       expect(first).toMatchObject({
-        name: 'Cherry Assistant',
+        name: 'WAT Asistan',
         model: TEST_MODEL_ID,
         configuration: {
           avatar: '🍒',
@@ -507,7 +507,7 @@ describe('AgentService', () => {
       const supportDefaults: Parameters<typeof agentService.ensureBuiltinAgent>[0] = {
         ...defaults,
         builtinRole: 'support',
-        name: 'Cherry Support'
+        name: 'WAT Destek'
       }
       const first = agentService.ensureBuiltinAgent(supportDefaults)
       dbh.db
@@ -784,7 +784,7 @@ describe('AgentService', () => {
     })
 
     it('rejects updateAgent changing an existing builtin_role', async () => {
-      // Seed through the internal tx path, as the Cherry Assistant seeder does.
+      // Seed through the internal tx path, as the WAT Asistan seeder does.
       const agentId = 'agent_builtin_change'
       await insertAgent({ id: agentId, configuration: { builtin_role: 'assistant' } })
 
@@ -1998,7 +1998,7 @@ describe('AgentService', () => {
     it('searches the localized blank builtin description server-side and returns it for display', async () => {
       await insertAgent({
         id: 'agent_builtin_assistant',
-        name: 'Cherry Assistant',
+        name: 'WAT Asistan',
         description: '',
         configuration: { builtin_role: 'assistant' }
       })
@@ -2063,7 +2063,7 @@ describe('AgentService', () => {
     it('matches and displays the localized blank builtin description in global search', async () => {
       await insertAgent({
         id: 'agent_builtin_global_search',
-        name: 'Cherry Assistant',
+        name: 'WAT Asistan',
         description: '',
         configuration: { builtin_role: 'assistant' },
         updatedAt: 100
@@ -2073,15 +2073,15 @@ describe('AgentService', () => {
         expect.objectContaining({
           id: 'agent_builtin_global_search',
           subtitle:
-            'Built-in Cherry Studio advisor. Diagnose issues, guide operations, collect FAQs, submit bugs/feature requests, and search/create Skills'
+            'Built-in WAT GBT - Aİ advisor. Diagnose issues, guide operations, collect FAQs, submit bugs/feature requests, and search/create Skills'
         })
       ])
     })
 
-    it('matches and displays Cherry Support through its localized fallback description', async () => {
+    it('matches and displays WAT Destek through its localized fallback description', async () => {
       await insertAgent({
         id: CHERRY_SUPPORT_AGENT_ID,
-        name: 'Cherry Support',
+        name: 'WAT Destek',
         description: '',
         configuration: { builtin_role: 'support' },
         updatedAt: 100
@@ -2090,7 +2090,7 @@ describe('AgentService', () => {
       expect(agentService.search({ q: 'troubleshooting', limit: 5 })).toEqual([
         expect.objectContaining({
           id: CHERRY_SUPPORT_AGENT_ID,
-          subtitle: 'Official Cherry Studio support Agent for setup guidance, troubleshooting, FAQs, and feedback'
+          subtitle: 'Official WAT GBT - Aİ support Agent for setup guidance, troubleshooting, FAQs, and feedback'
         })
       ])
     })

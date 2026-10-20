@@ -23,7 +23,7 @@ export function HelpMenu({
   onOverlayOpenChange?: (open: boolean) => void
   placement?: 'right' | 'bottom'
 }) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { openSmartMiniApp } = useMiniAppPopup()
   const openReleaseNotes = useOpenReleaseNotes()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -58,15 +58,10 @@ export function HelpMenu({
   }
 
   const openDocs = () => {
-    const language = i18n.resolvedLanguage ?? i18n.language
-    const url =
-      language === 'zh-CN' || language === 'zh-TW'
-        ? 'https://docs.cherryai.com.cn/'
-        : 'https://docs.cherryai.com.cn/docs/en-us'
     openSmartMiniApp({
-      appId: 'cherrystudio-guide',
+      appId: 'wat-gbt-ai-guide',
       name: t('help.guide'),
-      url,
+      url: 'https://github.com/yasinonder/WAT-GBT#kullanım',
       logo: AppLogo
     })
   }

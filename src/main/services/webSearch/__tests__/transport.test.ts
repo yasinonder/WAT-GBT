@@ -26,7 +26,7 @@ describe('Electron web search transport', () => {
     const [, init] = fetchMock.mock.calls[0]
     expect(init?.body).toBe('{"query":"hello"}')
     expect(new Headers(init?.headers).get('authorization')).toBe('Bearer selected-key')
-    expect(new Headers(init?.headers).get('x-title')).toBe('Cherry Studio')
+    expect(new Headers(init?.headers).get('x-title')).toBe('WAT GBT - Aİ')
   })
 
   it('rejects pre-cancelled calls without starting a request', async () => {

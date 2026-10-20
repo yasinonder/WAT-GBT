@@ -71,7 +71,7 @@ function resolveRealOrNearestExistingPath(targetPath: string): string {
   }
 }
 
-// Whitelist of settings Cherry Assistant can write directly. Each entry binds
+// Whitelist of settings WAT Asistan can write directly. Each entry binds
 // a `setting` key to a value validator and an `apply` function that performs
 // the write. Settings not in this map are rejected — adding a new one
 // requires explicit code change so a destructive or sensitive setting can
@@ -258,7 +258,7 @@ const CreateAgentInputSchema = z.object({
     .string()
     .optional()
     .describe(
-      'Optional model id in the form "providerId::modelId" (e.g. "cherryin::agent/glm-5.1", "anthropic::claude-sonnet"). When omitted, the new agent uses Cherry Assistant\'s current model.'
+      'Optional model id in the form "providerId::modelId" (e.g. "cherryin::agent/glm-5.1", "anthropic::claude-sonnet"). When omitted, the new agent uses WAT Asistan\'s current model.'
     )
 })
 
@@ -289,7 +289,7 @@ async function createAgent(
     modelService.getByKey(providerId, modelId)
   } catch (error) {
     if (isDataApiError(error) && error.code === DataApiErrorCode.NOT_FOUND) {
-      throw new Error(`Model is not configured in Cherry Studio: ${parsedModel.data}`)
+      throw new Error(`Model is not configured in WAT GBT - Aİ: ${parsedModel.data}`)
     }
     throw error
   }
@@ -699,7 +699,7 @@ const ASSISTANT_TOOLS: Record<AssistantToolName, (server: McpServer, defaultMode
       'navigate',
       {
         description:
-          'Create a clickable link to a Cherry Studio route from product_info. Prefer it over written UI steps.',
+          'Create a clickable link to a WAT GBT - Aİ route from product_info. Prefer it over written UI steps.',
         inputSchema: NavigateInputSchema
       },
       async (args) => navigate(args)
@@ -709,7 +709,7 @@ const ASSISTANT_TOOLS: Record<AssistantToolName, (server: McpServer, defaultMode
       'diagnose',
       {
         description:
-          'Read Cherry Studio runtime state for troubleshooting: app info, providers, connectivity, logs, MCP status.',
+          'Read WAT GBT - Aİ runtime state for troubleshooting: app info, providers, connectivity, logs, MCP status.',
         inputSchema: DiagnoseInputSchema
       },
       async (args, ctx) => diagnose(args, ctx.mcpReq.signal)
@@ -718,7 +718,7 @@ const ASSISTANT_TOOLS: Record<AssistantToolName, (server: McpServer, defaultMode
     server.registerTool(
       'product_info',
       {
-        description: 'Read Cherry Studio product facts from the installed manifest. Request only the section you need.',
+        description: 'Read WAT GBT - Aİ product facts from the installed manifest. Request only the section you need.',
         inputSchema: ProductInfoInputSchema
       },
       async (args) => productInfo(args)

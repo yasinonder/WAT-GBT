@@ -73,7 +73,7 @@ export class ComputerUseControlError extends Error {
       {
         CONTROL_DISABLED: 'Desktop control is disabled in Computer Use settings.',
         USER_STOPPED:
-          'The user stopped desktop control. Only the user can allow it again through Cherry Studio desktop controls. Do not retry or bypass the stop.',
+          'The user stopped desktop control. Only the user can allow it again through WAT GBT - Aİ desktop controls. Do not retry or bypass the stop.',
         CLEANUP_UNCONFIRMED:
           'Desktop runtime cleanup could not be confirmed. Control remains blocked; this is not a user-stop decision. Do not retry, reset or rebind to bypass it.',
         APP_BUSY: 'Another control task owns this application. Do not bypass its ownership.',

@@ -34,13 +34,13 @@ describe('createBuiltinSupportSession', () => {
         permission_mode: 'default',
         env_vars: {}
       },
-      name: 'Cherry Support',
+      name: 'WAT Destek',
       preferredModelId: null,
       type: 'claude-code'
     })
   })
 
-  it('atomically restores Cherry Support and creates a fresh system session', () => {
+  it('atomically restores WAT Destek and creates a fresh system session', () => {
     const session = createBuiltinSupportSession()
 
     expect(session).toMatchObject({
@@ -63,7 +63,7 @@ describe('createBuiltinSupportSession', () => {
     ])
   })
 
-  it('reuses the active Cherry Support role but creates a new session for every request', () => {
+  it('reuses the active WAT Destek role but creates a new session for every request', () => {
     const first = createBuiltinSupportSession()
     const second = createBuiltinSupportSession()
 

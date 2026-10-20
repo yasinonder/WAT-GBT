@@ -2393,7 +2393,7 @@ describe('KnowledgeService', () => {
 
       it('reports UTF-16 offsets after multi-byte and astral characters', async () => {
         const service = new KnowledgeService()
-        const text = '前言 😀\n中文 cherry studio 😀 studio'
+        const text = '前言 😀\n中文 WAT GBT - Aİ 😀 studio'
         arrangeReadable(text)
 
         const result = await service.grepConcept('kb-1', CONCEPT_ID, { pattern: 'studio' })
@@ -2475,7 +2475,7 @@ describe('KnowledgeService', () => {
 
       it('still supports look-around and backreferences', async () => {
         const service = new KnowledgeService()
-        arrangeReadable('cherry studio, studious, abab')
+        arrangeReadable('WAT GBT - Aİ, studious, abab')
 
         expect((await service.grepConcept('kb-1', CONCEPT_ID, { pattern: 'stud(?=io\\b)' })).totalMatches).toBe(1)
         expect((await service.grepConcept('kb-1', CONCEPT_ID, { pattern: '(ab)\\1' })).totalMatches).toBe(1)

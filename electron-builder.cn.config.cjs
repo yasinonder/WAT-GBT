@@ -5,13 +5,13 @@ module.exports = async function createChinaEditionConfig({ packageMetadata }) {
 
   return {
     extends: './electron-builder.yml',
-    appId: 'com.cherryai.cherrystudio.cn',
+    appId: 'com.watmotor.watgbtai.cn',
     extraMetadata: {
       cherryEdition: CHINA_EDITION
     },
     publish: {
       provider: 'generic',
-      url: 'https://releases.cherry-ai.com',
+      url: 'https://github.com/yasinonder/WAT-GBT/releases/latest/download',
       useMultipleRangeRequest: false,
       channel: getReleaseChannel(version, CHINA_EDITION)
     }

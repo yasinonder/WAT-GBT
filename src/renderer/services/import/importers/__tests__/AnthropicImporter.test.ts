@@ -147,7 +147,7 @@ describe('AnthropicImporter', () => {
             stop_timestamp: '2026-01-01T00:00:02.000Z'
           },
           { type: 'text', text: 'I will search first' },
-          { type: 'tool_use', id: 'tool-1', name: 'web_search', input: { query: 'cherry studio' } },
+          { type: 'tool_use', id: 'tool-1', name: 'web_search', input: { query: 'WAT GBT - Aİ' } },
           {
             type: 'tool_result',
             tool_use_id: 'tool-1',
@@ -172,7 +172,7 @@ describe('AnthropicImporter', () => {
           type: 'dynamic-tool',
           toolCallId: 'tool-1',
           toolName: 'web_search',
-          input: { query: 'cherry studio' },
+          input: { query: 'WAT GBT - Aİ' },
           state: 'output-available',
           output: 'search result text'
         },
