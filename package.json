@@ -1,9 +1,9 @@
 {
-  "name": "CherryStudio",
-  "version": "2.1.7",
+  "name": "wat-gbt-ai",
+  "version": "2.1.7-wat.1",
   "private": true,
-  "description": "A powerful AI assistant for producer.",
-  "homepage": "https://github.com/CherryHQ/cherry-studio",
+  "description": "WAT - GBT AI | Cherry Studio tabanli AI calisma alani",
+  "homepage": "https://github.com/yasinonder/WAT-GBT",
   "author": "support@cherry-ai.com",
   "main": "./out/main/main.js",
   "scripts": {
@@ -128,7 +128,10 @@
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
     "ui:contract:query": "tsx scripts/uiContract/query.ts",
-    "update:languages": "tsx scripts/update-languages.ts"
+    "update:languages": "tsx scripts/update-languages.ts",
+    "brand:assets": "node scripts/wat-gbt/brand-assets.cjs",
+    "brand:verify": "node scripts/wat-gbt/verify-brand.cjs",
+    "build:wat:win:x64": "pnpm run brand:assets && pnpm run build && electron-builder --win portable --x64 --publish never"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "0.3.284",
