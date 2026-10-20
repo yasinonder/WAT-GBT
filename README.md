@@ -10,6 +10,8 @@ Gücü Tasarlar, Kaliteyle Üretiriz...
 
 Sağlayıcı ayarlarından Google, Mistral, Groq, OpenAI veya uyumlu bir hizmetin API anahtarını ve modelini seçin. Yerel modeller için Ollama ve LM Studio seçenekleri de bulunur. Model ve araçların kullanılabilirliği sağlayıcıya ve yapılandırmaya bağlıdır.
 
+Otomatik konuşma başlıkları için **Ayarlar → Varsayılan Model → Hızlı Model** alanından yapılandırdığınız modeli seçin. Kullanılamayan bir hızlı model yerine yapılandırılmış varsayılan model denenir; uygun model yoksa ilk mesajdan oluşturulan başlık korunur. Bu dağıtım, özgün uygulamanın özel bulut hizmeti anahtarlarını içermez.
+
 Sohbetler, ajanlar, bilgi tabanları, dosyalar, belgeler, görsel üretimi ve otomasyonlar mevcut uygulamanın özellikleridir. Bu değişiklik ürün adı, WAT logosu, başlıklar, ürün bağlantıları ve paket kimliğini kişiselleştirir; sağlayıcı istek/yeniden deneme mantığını değiştirmez.
 
 ## Windows x64 derleme
