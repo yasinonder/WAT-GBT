@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
 
+import { NoSuchModelError } from '@ai-sdk/provider'
 import { setupTestDatabase } from '@test-helpers/db'
 import { eq } from 'drizzle-orm'
 import { net } from 'electron'
@@ -12,7 +13,7 @@ import { ENDPOINT_TYPE, MODEL_CAPABILITY, type EndpointType } from '@shared/data
 
 import { startSpeech } from '../execution'
 import type { SpeechRequest } from '../executionTypes'
-import { listSpeechModels, listSpeechVoices, resolveSpeechConfiguration } from '../speechModels'
+import { listSpeechModels, listSpeechVoices, resolveSpeechConfiguration, resolveSpeechRequest } from '../speechModels'
 
 async function generateModelSpeech(
   modelId: SpeechRequest['modelId'],
@@ -99,6 +100,22 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks())
 
 describe('configured cloud speech', () => {
+  it('rejects transcription-only models during speech resolution before transport', async () => {
+    addModel('transcription', 'whisper-1', ENDPOINT_TYPE.OPENAI_AUDIO_TRANSCRIPTION)
+    dbh.db
+      .update(userModelTable)
+      .set({ capabilities: [], inputModalities: ['audio'], outputModalities: ['text'] })
+      .where(eq(userModelTable.providerId, 'transcription'))
+      .run()
+    const fetch = vi.spyOn(net, 'fetch')
+    const modelId = 'transcription::whisper-1'
+
+    expect(listSpeechModels().map(({ id }) => id)).not.toContain(modelId)
+    expect(await resolveSpeechConfiguration({ modelId })).toMatchObject({ status: { status: 'unsupported' } })
+    expect(() => resolveSpeechRequest({ modelId, voice: 'nova' })).toThrow(NoSuchModelError)
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
   it('lists only finite speech models and keeps unavailable explicit selections', async () => {
     addModel('live-google', 'gemini-live-audio', ENDPOINT_TYPE.GOOGLE_GENERATE_CONTENT)
     dbh.db
