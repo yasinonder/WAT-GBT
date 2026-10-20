@@ -4,6 +4,10 @@ on:
     branches:
       - wat-gbt-ai-v1
   workflow_dispatch:
+concurrency:
+  group: wat-gbt-ai-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 jobs:
