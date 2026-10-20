@@ -159,7 +159,7 @@ const SelectionToolbarView = ({
           'm-0 flex items-center justify-center rounded-l-[10px] [border-width:0.5px_0_0.5px_0.5px] border-solid border-[var(--selection-toolbar-border)] bg-transparent [padding:0_6px_0_8px]',
           draggable && '[-webkit-app-region:drag]'
         )}>
-        <img src={AppLogo} className="size-[22px] rounded-full object-cover" draggable={false} alt="" />
+        <img src={AppLogo} className="size-[22px] rounded-none object-contain" draggable={false} alt="" />
       </div>
       <div
         className={cn(

@@ -287,7 +287,7 @@ export default function LaunchpadPage() {
       <Scrollbar className="min-h-0 flex-1">
         <div className="mx-auto flex w-full max-w-180 flex-col gap-5 py-12.5">
           <header className="flex items-center gap-4 px-9 pb-4">
-            <img src={AppLogo} alt="" className="size-16 shrink-0 rounded-xl object-contain" />
+            <img src={AppLogo} alt="" className="size-16 shrink-0 rounded-none object-contain" />
             <div className="min-w-0">
               <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('app.brand.name')}</h1>
               <p className="mt-1 text-sm font-medium text-muted-foreground">{t('app.brand.organization')}</p>
