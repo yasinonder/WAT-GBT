@@ -75,7 +75,7 @@ describe('edition packaging', () => {
     expect(script).toContain(`--${arch}`)
   })
 
-  it('keeps the existing global product and update identity', () => {
+  it('uses the WAT global product and update identity', () => {
     const config = parse(readFileSync(path.join(projectRoot, 'electron-builder.yml'), 'utf8'))
 
     expect({
@@ -87,12 +87,15 @@ describe('edition packaging', () => {
       publish: config.publish,
       windowsArtifactName: config.win.artifactName
     }).toEqual({
-      appId: 'com.kangfenmao.CherryStudio',
+      appId: 'com.watmotor.watgbtai',
       edition: GLOBAL_EDITION,
-      nsisGuid: '41a4ccd8-bcc0-5710-9eee-0e164da68057',
-      productName: 'Cherry Studio',
+      nsisGuid: 'ba52bd57-67ac-4a58-82bb-b8af333ecbde',
+      productName: 'WAT GBT - Aİ',
       protocol: 'cherrystudio',
-      publish: expect.objectContaining({ provider: 'generic', url: 'https://releases.cherry-ai.com' }),
+      publish: expect.objectContaining({
+        provider: 'generic',
+        url: 'https://github.com/yasinonder/WAT-GBT/releases/latest/download'
+      }),
       windowsArtifactName: '${productName}-${version}-${arch}-setup.${ext}'
     })
   })
@@ -104,13 +107,13 @@ describe('edition packaging', () => {
 
     expect(config).toEqual({
       extends: './electron-builder.yml',
-      appId: 'com.cherryai.cherrystudio.cn',
+      appId: 'com.watmotor.watgbtai.cn',
       extraMetadata: {
         cherryEdition: CHINA_EDITION
       },
       publish: expect.objectContaining({
         provider: 'generic',
-        url: 'https://releases.cherry-ai.com',
+        url: 'https://github.com/yasinonder/WAT-GBT/releases/latest/download',
         channel: 'latest-cn'
       })
     })
@@ -122,8 +125,8 @@ describe('edition packaging', () => {
     })
     const chinaPackageMetadata = { ...packageMetadata, ...config.extraMetadata }
 
-    expect(packageMetadata.productName ?? packageMetadata.name).toBe('CherryStudio')
-    expect(chinaPackageMetadata.productName ?? chinaPackageMetadata.name).toBe('CherryStudio')
+    expect(packageMetadata.productName ?? packageMetadata.name).toBe('WAT GBT - Aİ')
+    expect(chinaPackageMetadata.productName ?? chinaPackageMetadata.name).toBe('WAT GBT - Aİ')
   })
 
   it.each([
