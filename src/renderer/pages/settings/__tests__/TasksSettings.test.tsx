@@ -1160,7 +1160,7 @@ describe('TasksSettings routing and creation', () => {
     expect(agentCreate).toBeEnabled()
   })
 
-  it('opens a prepared Cherry Assistant chat with the scheduled task intent', async () => {
+  it('opens a prepared WAT Asistan chat with the scheduled task intent', async () => {
     navigationMocks.taskId = undefined
     ipcMocks.request.mockResolvedValue({ sessionId: 'session-task-chat' })
 

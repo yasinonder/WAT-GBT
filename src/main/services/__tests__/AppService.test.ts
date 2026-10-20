@@ -42,7 +42,7 @@ import { MockMainPreferenceServiceUtils } from '@test-mocks/main/PreferenceServi
 const { AppService } = await import('../AppService')
 
 const autostartDir = '/mock/sys.appdata.autostart'
-const desktopFile = path.join(autostartDir, 'cherry-studio.desktop')
+const desktopFile = path.join(autostartDir, 'wat-gbt-ai.desktop')
 const linuxFiles = new Set<string>()
 const activeServices: BaseService[] = []
 
@@ -285,19 +285,19 @@ describe('AppService', () => {
 
     it('registers the stable launcher for Windows portable builds', async () => {
       platform.isPortable = true
-      vi.stubEnv('PORTABLE_EXECUTABLE_FILE', 'D:\\Apps\\Cherry Studio Portable.exe')
+      vi.stubEnv('PORTABLE_EXECUTABLE_FILE', 'D:\\Apps\\WAT GBT - Aİ Portable.exe')
 
       await new AppService().setAppLaunchOnBoot(true)
 
       expect(setLoginItemSettingsMock).toHaveBeenCalledWith({
         openAtLogin: true,
-        path: 'D:\\Apps\\Cherry Studio Portable.exe',
+        path: 'D:\\Apps\\WAT GBT - Aİ Portable.exe',
         args: []
       })
     })
 
     it('uses Electron defaults for installed Windows builds', async () => {
-      vi.stubEnv('PORTABLE_EXECUTABLE_FILE', 'D:\\Apps\\Cherry Studio Portable.exe')
+      vi.stubEnv('PORTABLE_EXECUTABLE_FILE', 'D:\\Apps\\WAT GBT - Aİ Portable.exe')
 
       await new AppService().setAppLaunchOnBoot(false)
 

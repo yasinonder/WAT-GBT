@@ -199,7 +199,7 @@ const SelectionActionSearchModal: FC<SelectionActionSearchModalProps> = ({
   const handleTest = () => {
     const customUrl = form.getValues('customUrl')
     if (customUrl) {
-      const testUrl = customUrl.replace('{{queryString}}', 'cherry studio')
+      const testUrl = customUrl.replace('{{queryString}}', 'WAT GBT - Aİ')
       void openExternalWebsite(testUrl)
     }
   }

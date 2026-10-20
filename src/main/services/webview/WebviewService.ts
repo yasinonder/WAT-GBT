@@ -160,7 +160,7 @@ export class WebviewService extends BaseService {
   private initSessionUserAgent() {
     const wvSession = session.fromPartition(WEBVIEW_PARTITION)
     const originUA = wvSession.getUserAgent()
-    const newUA = originUA.replace(/CherryStudio\/\S+\s/, '').replace(/Electron\/\S+\s/, '')
+    const newUA = originUA.replace(/(?:CherryStudio|WAT-GBT-AI)\/\S+\s/, '').replace(/Electron\/\S+\s/, '')
 
     wvSession.setUserAgent(newUA)
     wvSession.webRequest.onBeforeSendHeaders((details, cb) => {

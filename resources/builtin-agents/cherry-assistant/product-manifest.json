@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "package": {
-    "name": "CherryStudio",
+    "name": "wat-gbt-ai",
     "version": "2.1.7",
-    "description": "A powerful AI assistant for producer.",
-    "homepage": "https://github.com/CherryHQ/cherry-studio"
+    "description": "WAT MOTOR A.Ş. — Kurumsal yapay zekâ çalışma alanı",
+    "homepage": "https://github.com/yasinonder/WAT-GBT"
   },
   "routes": {
     "primary": [

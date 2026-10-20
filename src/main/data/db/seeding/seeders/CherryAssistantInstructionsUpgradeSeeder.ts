@@ -15,7 +15,7 @@ const LEGACY_INSTRUCTION_HASHES = new Set([
 export class CherryAssistantInstructionsUpgradeSeeder implements ISeeder {
   readonly name = 'cherryAssistantInstructionsUpgrade'
   readonly version = '1'
-  readonly description = 'Restore bundled instructions for legacy stock Cherry Assistant prompts'
+  readonly description = 'Restore bundled instructions for legacy stock WAT Asistan prompts'
   readonly executionPolicy = 'run-on-change' as const
 
   run(db: DbType): void {

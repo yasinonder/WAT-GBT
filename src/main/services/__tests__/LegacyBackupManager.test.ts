@@ -351,7 +351,7 @@ describe('BackupManager direct v2 data compatibility', () => {
   let backupManager: BackupManager
   const metadata = {
     version: 7,
-    appName: 'Cherry Studio',
+    appName: 'WAT GBT - Aİ',
     appVersion: '2.0.0',
     timestamp: 1,
     platform: process.platform,
@@ -577,7 +577,7 @@ describe('BackupManager direct v2 data compatibility', () => {
       '/mock/temp/backup/create-operation-id/metadata.json',
       expect.objectContaining({
         version: 7,
-        appName: 'Cherry Studio',
+        appName: 'WAT GBT - Aİ',
         resources: {
           database: false,
           cache: true,
@@ -821,8 +821,8 @@ describe('BackupManager direct v2 data compatibility', () => {
     vi.spyOn(backupManager as any, 'fsyncTree').mockImplementation(() => {})
   }
 
-  it('keeps restore progress monotonic after copying Data', async () => {
-    arrangeDirectRestore(completeDataMetadata)
+  it.each(['WAT GBT - Aİ', 'Cherry Studio'])('restores %s backups with monotonic progress', async (appName) => {
+    arrangeDirectRestore({ ...completeDataMetadata, appName })
     vi.mocked(fs.lstat).mockImplementation(async (entryPath) => {
       return createStats(String(entryPath) === '/extract/Data' ? 'directory' : 'file') as never
     })
@@ -1370,10 +1370,10 @@ describe('BackupManager direct v2 data compatibility', () => {
   })
 
   it('rejects a v1 version 6 archive before staging any resources', async () => {
-    vi.mocked(fs.readJson).mockResolvedValue({ version: 6, appName: 'Cherry Studio' })
+    vi.mocked(fs.readJson).mockResolvedValue({ version: 6, appName: 'WAT GBT - Aİ' })
 
     await expect((backupManager as any).restoreDirect('/extract')).rejects.toThrow(
-      'Unsupported backup version 6. Cherry Studio v2 can only restore backup version 7.'
+      'Unsupported backup version 6. WAT GBT - Aİ v2 can only restore backup version 7.'
     )
 
     expect(fs.copy).not.toHaveBeenCalled()

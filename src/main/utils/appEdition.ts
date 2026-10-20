@@ -6,8 +6,8 @@ import { application } from '@application'
 import type { AppEdition } from '@shared/types/appEdition'
 
 const APPLICATION_IDS = {
-  global: 'com.kangfenmao.CherryStudio',
-  cn: 'com.cherryai.cherrystudio.cn'
+  global: 'com.watmotor.watgbtai',
+  cn: 'com.watmotor.watgbtai.cn'
 } as const satisfies Record<AppEdition, string>
 
 function parseAppEdition(value: unknown): AppEdition {

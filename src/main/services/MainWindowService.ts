@@ -23,7 +23,6 @@ import {
   isAllowedAgentDevPreviewEntryUrl,
   isAllowedAgentHtmlArtifactEntryUrl
 } from '@main/utils/agentWebviewRequest'
-import { getAppEdition } from '@main/utils/appEdition'
 import { isAllowedHtmlArtifactRequest } from '@main/utils/htmlArtifactRequest'
 import { getWindowsBackgroundMaterial, replaceDevtoolsFont } from '@main/utils/windowUtil'
 import { IpcChannel } from '@shared/IpcChannel'
@@ -393,7 +392,7 @@ export class MainWindowService extends BaseService {
     const handleWillDownload = (event: Electron.Event) => event.preventDefault()
     const userAgent = restrictedSession
       .getUserAgent()
-      .replace(/CherryStudio\/\S+\s/, '')
+      .replace(/(?:CherryStudio|WAT-GBT-AI)\/\S+\s/, '')
       .replace(/Electron\/\S+\s/, '')
 
     restrictedSession.setUserAgent(userAgent)
@@ -516,9 +515,7 @@ export class MainWindowService extends BaseService {
       noLink: true
     })
     if (response === 0) {
-      await shell.openExternal(
-        getAppEdition() === 'cn' ? 'https://cherryai.com.cn/download' : 'https://cherryai.com/download'
-      )
+      await shell.openExternal('https://github.com/yasinonder/WAT-GBT/releases')
     }
   }
 

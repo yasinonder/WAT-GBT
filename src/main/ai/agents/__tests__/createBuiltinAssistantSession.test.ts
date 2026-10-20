@@ -24,13 +24,13 @@ describe('createBuiltinAssistantSession', () => {
     mocks.loadInput.mockReturnValue({
       builtinRole: 'assistant',
       configuration: { avatar: '🍒', permission_mode: 'default', env_vars: {} },
-      name: 'Cherry Assistant',
+      name: 'WAT Asistan',
       preferredModelId: null,
       type: 'claude-code'
     })
   })
 
-  it('restores Cherry Assistant and creates a fresh system session on it', () => {
+  it('restores WAT Asistan and creates a fresh system session on it', () => {
     const session = createBuiltinAssistantSession()
 
     const [agent] = dbh.db.select().from(agentTable).all()
@@ -38,7 +38,7 @@ describe('createBuiltinAssistantSession', () => {
     expect(session).toMatchObject({ agentId: agent.id, name: '', workspace: { type: 'system' } })
   })
 
-  it('reuses Cherry Assistant but creates a new session for every request', () => {
+  it('reuses WAT Asistan but creates a new session for every request', () => {
     const first = createBuiltinAssistantSession()
     const second = createBuiltinAssistantSession()
 

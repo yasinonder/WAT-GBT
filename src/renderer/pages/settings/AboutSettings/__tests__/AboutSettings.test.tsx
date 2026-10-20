@@ -71,7 +71,7 @@ vi.mock('@renderer/components/icons/LogoAvatar', () => ({
 
 import { AboutSettings } from '..'
 
-const REPOSITORY_URL = 'https://github.com/CherryHQ/cherry-studio'
+const REPOSITORY_URL = 'https://github.com/yasinonder/WAT-GBT'
 
 async function renderAboutSettings() {
   render(<AboutSettings />)
@@ -154,7 +154,7 @@ describe('AboutSettings repository controls accessibility', () => {
 
     const repositoryButtons = screen.getAllByRole('button', { name: 'settings.about.repository' })
     expect(repositoryButtons).toHaveLength(2)
-    expect(screen.queryByRole('button', { name: 'Cherry Studio' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'WAT GBT - Aİ' })).not.toBeInTheDocument()
     expect(screen.queryByRole('img')).not.toBeInTheDocument()
 
     await user.click(repositoryButtons[0])

@@ -23,7 +23,7 @@ function getReleaseChannel(version, edition) {
 
 function getReleaseProductName(productName, edition) {
   assertEdition(edition)
-  return edition === CHINA_EDITION ? 'Cherry Studio CN' : productName
+  return edition === CHINA_EDITION ? `${productName} CN` : productName
 }
 
 function getReleaseDownloadGroups({ edition, platform, productName, version }) {

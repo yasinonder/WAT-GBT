@@ -46,7 +46,7 @@ import { materializeNativeFilePart } from './fileProcessor'
 const logger = loggerService.withContext('ai:attachmentRouting')
 
 const NON_VISION_IMAGE_OCR_ERROR_MESSAGE =
-  "The selected model isn't configured for image input, and Cherry Studio couldn't extract readable text from the attachment. Enable Vision for this model in Provider Settings, choose another vision-capable model, or remove the image and try again."
+  "The selected model isn't configured for image input, and WAT GBT - Aİ couldn't extract readable text from the attachment. Enable Vision for this model in Provider Settings, choose another vision-capable model, or remove the image and try again."
 
 /**
  * Why the OCR fallback did not produce text — surfaced through the localized

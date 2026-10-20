@@ -1998,7 +1998,7 @@ describe('ModelService.getNamesByUniqueIdsTx', () => {
 /**
  * Seeders run inside `DbService.onInit()`, where `getDb()` still throws. A `*Tx`
  * read that reaches for the service singleton instead of its own transaction
- * therefore aborts startup (v2.0.11 shipped exactly that: the Cherry Support
+ * therefore aborts startup (v2.0.11 shipped exactly that: the WAT Destek
  * seeder could not create the built-in Agent). Edition availability must be
  * decided from columns the caller's own query already returned.
  */

@@ -4,7 +4,7 @@ import { type FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Badge, Button, Center, Flex, Input, RowFlex, Spinner } from '@cherrystudio/ui'
-import logo from '@renderer/assets/images/cherry-text-logo.svg'
+import logo from '@renderer/assets/images/wat-text-logo.svg'
 import { useMcpServers } from '@renderer/hooks/useMcpServer'
 import { toast } from '@renderer/services/toast'
 import { getMcpConfigSampleFromReadme } from '@renderer/utils/mcp'

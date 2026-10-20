@@ -6,7 +6,7 @@ version: 1.7.0
 
 # Cherry Tool Guide
 
-Cherry Studio injects first-party tools into your session over four MCP servers
+WAT GBT - Aİ injects first-party tools into your session over four MCP servers
 (`mcp__cherry-tools__*`, `mcp__agent-memory__*`, `mcp__skills__*`, `mcp__mcp-manager__*`)
 and gives shell-capable general agents bundled runtimes for local execution. The MCP
 tools act on the running app — the user's knowledge bases, IM channels, schedules,
@@ -93,5 +93,5 @@ Not covered here: SDK-native `Read`/`Edit`/`Bash` and orchestration tools; *call
 tools of a third-party (user-configured) MCP server — only registering one is in scope,
 see [mcp.md](references/mcp.md); the AI-SDK chat `read_file` attachment reader (a
 chat-path tool, not exposed on this MCP surface); and the role-specific
-`mcp__assistant__*` navigation/diagnosis tools, which belong to the Cherry Assistant and
+`mcp__assistant__*` navigation/diagnosis tools, which belong to the WAT Asistan and
 its own guide.

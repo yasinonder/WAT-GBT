@@ -283,7 +283,7 @@ describe('buildSystemPrompt — report_artifacts prompt', () => {
     expect(expectClaudeCodePreset(result)).toContain(ARTIFACTS_MARKER)
   })
 
-  it('appends it for the Cherry Assistant like every other Agent', async () => {
+  it('appends it for the WAT Asistan like every other Agent', async () => {
     const agent = makeAgent({
       instructions: 'Assistant instructions.',
       configuration: { builtin_role: 'assistant' } as never
@@ -336,7 +336,7 @@ describe('buildSystemPrompt — runtime/CLI handbook', () => {
     expect(result).not.toContain('Install dependencies INTO the project (cwd) only')
   })
 
-  it('does not inject the handbook for the Cherry Assistant', async () => {
+  it('does not inject the handbook for the WAT Asistan', async () => {
     const agent = makeAgent({
       instructions: 'Assistant instructions.',
       configuration: { builtin_role: 'assistant' } as never
@@ -348,7 +348,7 @@ describe('buildSystemPrompt — runtime/CLI handbook', () => {
   })
 })
 
-describe('buildSystemPrompt — builtin Cherry Assistant definition', () => {
+describe('buildSystemPrompt — builtin WAT Asistan definition', () => {
   beforeEach(() => {
     mockFindBySessionId.mockReturnValue(null)
   })
@@ -364,7 +364,7 @@ describe('buildSystemPrompt — builtin Cherry Assistant definition', () => {
     expect(result).toContain('SOUL_PROMPT')
     expect(result).toContain('Assistant instructions.')
     expect(result).toContain(ARTIFACTS_MARKER)
-    expect(result).not.toContain('Non-negotiable Cherry Assistant contract')
+    expect(result).not.toContain('Non-negotiable WAT Asistan contract')
   })
 
   it.each(['', '   '])(
@@ -384,7 +384,7 @@ describe('buildSystemPrompt — builtin Cherry Assistant definition', () => {
     }
   )
 
-  it('loads the bundled product feedback role for Cherry Support', async () => {
+  it('loads the bundled product feedback role for WAT Destek', async () => {
     mockLoadBuiltinAgentDefinition.mockReturnValue({
       instructions: 'Answer questions, provide usage help, troubleshoot problems, and submit feedback.'
     })
@@ -481,7 +481,7 @@ describe('buildSystemPrompt — builtin Cherry Assistant definition', () => {
   })
 
   it('injects the bundled Assistant role exactly once', async () => {
-    const role = 'Within Cherry Studio, you serve as Cherry Assistant, its built-in general-purpose Agent'
+    const role = 'Within WAT GBT - Aİ, you serve as WAT Asistan, its built-in general-purpose Agent'
     mockLoadBuiltinAgentDefinition.mockReturnValue({ instructions: role })
     mockBuildPrompt.mockResolvedValue({
       base: { kind: 'native' },

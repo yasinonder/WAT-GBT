@@ -185,7 +185,7 @@ export class AppMenuService extends BaseService {
             click: () => {
               void application
                 .get('MainWindowService')
-                .openWebsite('https://cherry-ai.com')
+                .openWebsite('https://github.com/yasinonder/WAT-GBT')
                 .catch((error) => logger.warn('Failed to open website', { error }))
             }
           },
@@ -195,7 +195,7 @@ export class AppMenuService extends BaseService {
             click: () => {
               void application
                 .get('MainWindowService')
-                .openWebsite('https://cherry-ai.com/docs')
+                .openWebsite('https://github.com/yasinonder/WAT-GBT#kullanım')
                 .catch((error) => logger.warn('Failed to open website', { error }))
             }
           },
@@ -212,7 +212,7 @@ export class AppMenuService extends BaseService {
             click: () => {
               void application
                 .get('MainWindowService')
-                .openWebsite('https://github.com/CherryHQ/cherry-studio/issues/new/choose')
+                .openWebsite('https://github.com/yasinonder/WAT-GBT')
                 .catch((error) => logger.warn('Failed to open website', { error }))
             }
           },
@@ -222,7 +222,7 @@ export class AppMenuService extends BaseService {
             click: () => {
               void application
                 .get('MainWindowService')
-                .openWebsite('https://github.com/CherryHQ/cherry-studio/releases')
+                .openWebsite('https://github.com/yasinonder/WAT-GBT/releases')
                 .catch((error) => logger.warn('Failed to open website', { error }))
             }
           }

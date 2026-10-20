@@ -375,7 +375,7 @@ describe('create_agent', () => {
     expect(JSON.parse(toolResultText(result))).toEqual(output)
   })
 
-  it("defaults to Cherry Assistant's current model when model is omitted", async () => {
+  it("defaults to WAT Asistan's current model when model is omitted", async () => {
     const client = await connectAssistantClient(undefined, 'openai::gpt-5')
 
     await callTool('create_agent', { name: 'Reviewer', instructions: 'Review code.' }, client)
@@ -406,7 +406,7 @@ describe('create_agent', () => {
     })
 
     expect(result.isError).toBe(true)
-    expect(toolResultText(result)).toContain('Model is not configured in Cherry Studio: anthropic::missing')
+    expect(toolResultText(result)).toContain('Model is not configured in WAT GBT - Aİ: anthropic::missing')
     expect(mocks.agentCreate).not.toHaveBeenCalled()
   })
 

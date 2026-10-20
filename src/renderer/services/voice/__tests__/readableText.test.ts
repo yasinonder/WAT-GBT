@@ -23,7 +23,7 @@ describe('normalizeReadableText', () => {
   it('keeps prose structures in reading order while removing Markdown-only syntax', () => {
     const markdown = `# Release notes
 
-Read [Cherry Studio](https://example.com/private-path) today. ![Architecture diagram](/private/file.png)
+Read [WAT GBT - Aİ](https://example.com/private-path) today. ![Architecture diagram](/private/file.png)
 
 - First item
 - Second item
@@ -33,7 +33,7 @@ Read [Cherry Studio](https://example.com/private-path) today. ![Architecture dia
 | Voice | Ready |`
 
     expect(normalizeReadableText(markdown)).toBe(
-      'Release notes\n\nRead Cherry Studio today. Architecture diagram\n\nFirst item\nSecond item\n\nName Status\nVoice Ready'
+      'Release notes\n\nRead WAT GBT - Aİ today. Architecture diagram\n\nFirst item\nSecond item\n\nName Status\nVoice Ready'
     )
   })
 

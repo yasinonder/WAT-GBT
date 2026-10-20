@@ -77,7 +77,7 @@ function createClient(
   versionMode: 'auto' | 'legacy' = 'auto'
 ): ClientMcpConnection {
   return new ClientMcpConnection(
-    { name: 'Cherry Studio', version: appVersion },
+    { name: 'WAT GBT - Aİ', version: appVersion },
     {
       capabilities: {
         elicitation: { form: {}, url: {} },

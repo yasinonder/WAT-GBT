@@ -821,7 +821,7 @@ describe('AgentPage', () => {
   })
 
   it('uses a prepared feedback session as a transient launch and skips the normal resume path', async () => {
-    // Opening must not depend on Cherry Support already being present in the renderer's stale Agent list.
+    // Opening must not depend on WAT Destek already being present in the renderer's stale Agent list.
     agentPageMocks.agents = []
     const previousSession = {
       ...agentPageMocks.persistedSession,

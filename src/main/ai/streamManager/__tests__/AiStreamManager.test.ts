@@ -2247,7 +2247,7 @@ describe('AiStreamManager', () => {
         type: 'tool-input-available',
         toolCallId: 'call-1',
         toolName: 'search',
-        input: { query: 'Cherry Studio' }
+        input: { query: 'WAT GBT - Aİ' }
       })
       approvalMgr.onChunk('a', 'provider-a::model-a', {
         type: 'tool-approval-request',
@@ -2284,7 +2284,7 @@ describe('AiStreamManager', () => {
         type: 'tool-input-available',
         toolCallId: 'call-1',
         toolName: 'search',
-        input: { query: 'Cherry Studio' }
+        input: { query: 'WAT GBT - Aİ' }
       })
       for (let i = 0; i < 2; i++) {
         approvalMgr.onChunk('a', 'provider-a::model-a', {

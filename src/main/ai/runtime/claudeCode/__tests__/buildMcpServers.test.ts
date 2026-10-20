@@ -157,7 +157,7 @@ describe('resolveMountedMcpServers', () => {
     expect([...mounted].sort()).toEqual(['agent-memory', 'cherry-tools', 'mcp-manager', 'skills'])
   })
 
-  it('drops the skills and mcp-manager servers for Cherry Support while keeping its host servers', () => {
+  it('drops the skills and mcp-manager servers for WAT Destek while keeping its host servers', () => {
     const mounted = resolveMountedMcpServers(
       { type: 'claude-code', configuration: { builtin_role: 'support' } } as never,
       {
@@ -170,7 +170,7 @@ describe('resolveMountedMcpServers', () => {
     expect(mounted.has('assistant')).toBe(true)
   })
 
-  it('withdraws Cherry Assistant host servers once the session is channel-linked', () => {
+  it('withdraws WAT Asistan host servers once the session is channel-linked', () => {
     const agentRef = { type: 'claude-code', configuration: { builtin_role: 'assistant' } } as never
     expect(resolveMountedMcpServers(agentRef, { channelLinked: false }).has('assistant')).toBe(true)
     expect(resolveMountedMcpServers(agentRef, { channelLinked: true }).has('assistant')).toBe(false)
@@ -411,7 +411,7 @@ describe('buildMcpServers', () => {
     expect(await cherryToolNames(servers)).not.toContain('kb_read')
   })
 
-  it('injects assistant file tools only for Cherry Assistant sessions', () => {
+  it('injects assistant file tools only for WAT Asistan sessions', () => {
     const plain = buildMcpServers(session, agent, WITHOUT_HOST_TOOLS)
     const assistant = buildMcpServers(session, agent, WITH_HOST_TOOLS)
 

@@ -1,7 +1,7 @@
 /**
- * Builds ClaudeCodeSettings from Cherry Studio's agent session configuration.
+ * Builds ClaudeCodeSettings from WAT GBT - Aİ's agent session configuration.
  *
- * Maps Cherry Studio's internal data model (agent sessions, providers, MCP servers,
+ * Maps WAT GBT - Aİ's internal data model (agent sessions, providers, MCP servers,
  * tool permissions, prompt builder) to ai-sdk-provider-claude-code's ClaudeCodeSettings.
  *
  * Usage:
@@ -151,7 +151,7 @@ export type { LinkedChannelSnapshot, McpServerSnapshotMap } from '@main/ai/runti
 // ── Main builder ────────────────────────────────────────────────────
 
 /**
- * Build session-level ClaudeCodeSettings from Cherry Studio's agent session.
+ * Build session-level ClaudeCodeSettings from WAT GBT - Aİ's agent session.
  */
 export async function buildClaudeCodeSessionSettings(
   session: AgentSessionEntity,
@@ -386,7 +386,7 @@ export { buildMcpServers } from './mcpCatalog'
 /**
  * Compute the SDK `Options.skills` whitelist for a session.
  *
- * Cherry Support is intentionally limited to canonical names from its bundled
+ * WAT Destek is intentionally limited to canonical names from its bundled
  * plugin. Plugin qualification prevents project or managed skills with the
  * same unqualified name from satisfying the SDK filter. Other agents merge
  * the sources below.

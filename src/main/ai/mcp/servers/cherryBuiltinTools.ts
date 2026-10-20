@@ -1,5 +1,5 @@
 /**
- * In-process `cherry-tools` MCP server exposing Cherry Studio's builtin tools to agent runtimes.
+ * In-process `cherry-tools` MCP server exposing WAT GBT - Aİ's builtin tools to agent runtimes.
  *
  * Wraps the same `webLookup` / painting cores the AI-SDK builtin tools use, so the
  * agent's web search/fetch and image generation run identical logic against the user's

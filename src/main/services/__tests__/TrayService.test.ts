@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 const mocks = vi.hoisted(() => ({
-  appGetPath: vi.fn(() => 'C:\\Program Files\\Cherry Studio\\Cherry Studio.exe'),
+  appGetPath: vi.fn(() => 'C:\\Program Files\\WAT GBT - Aİ\\WAT GBT - Aİ.exe'),
   applicationId: vi.fn(() => 'com.kangfenmao.CherryStudio'),
-  normalizedExecutablePath: vi.fn(() => 'C:\\Program Files\\Cherry Studio\\Cherry Studio.exe'),
+  normalizedExecutablePath: vi.fn(() => 'C:\\Program Files\\WAT GBT - Aİ\\WAT GBT - Aİ.exe'),
   platform: { isLinux: false, isMac: false, isPortable: false, isWin: true },
   preferenceGet: vi.fn(() => false),
   runningExecutableSigned: vi.fn(() => true),
@@ -71,8 +71,8 @@ function activateTray() {
 describe('TrayService', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    mocks.appGetPath.mockReturnValue('C:\\Program Files\\Cherry Studio\\Cherry Studio.exe')
-    mocks.normalizedExecutablePath.mockReturnValue('C:\\Program Files\\Cherry Studio\\Cherry Studio.exe')
+    mocks.appGetPath.mockReturnValue('C:\\Program Files\\WAT GBT - Aİ\\WAT GBT - Aİ.exe')
+    mocks.normalizedExecutablePath.mockReturnValue('C:\\Program Files\\WAT GBT - Aİ\\WAT GBT - Aİ.exe')
     mocks.applicationId.mockReturnValue('com.kangfenmao.CherryStudio')
     mocks.platform.isWin = true
     mocks.platform.isMac = false
@@ -101,8 +101,8 @@ describe('TrayService', () => {
     activateTray()
     const firstGuid = mocks.trayConstructor.mock.calls[0][1]
 
-    mocks.appGetPath.mockReturnValue('D:\\Portable Apps\\Cherry Studio.exe')
-    mocks.normalizedExecutablePath.mockReturnValue('D:\\Portable Apps\\Cherry Studio.exe')
+    mocks.appGetPath.mockReturnValue('D:\\Portable Apps\\WAT GBT - Aİ.exe')
+    mocks.normalizedExecutablePath.mockReturnValue('D:\\Portable Apps\\WAT GBT - Aİ.exe')
     activateTray()
 
     expect(mocks.trayConstructor.mock.calls[1][1]).not.toBe(firstGuid)
@@ -125,8 +125,8 @@ describe('TrayService', () => {
       'C:\\Users\\alice\\scoop\\apps\\cherry-studio\\current\\cherry-studio-portable.exe'
     )
     mocks.appGetPath
-      .mockReturnValueOnce('C:\\Temp\\updater-cache\\app-1\\Cherry Studio.exe')
-      .mockReturnValueOnce('C:\\Temp\\updater-cache\\app-2\\Cherry Studio.exe')
+      .mockReturnValueOnce('C:\\Temp\\updater-cache\\app-1\\WAT GBT - Aİ.exe')
+      .mockReturnValueOnce('C:\\Temp\\updater-cache\\app-2\\WAT GBT - Aİ.exe')
 
     activateTray()
     const firstGuid = mocks.trayConstructor.mock.calls[0][1]

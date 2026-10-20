@@ -225,10 +225,10 @@ export interface CherryUIMessageMetadata {
   turnOrigin?: AutonomousTurnOrigin
 }
 
-/** Cherry Studio's UIMessage with custom metadata and data part types. */
+/** WAT GBT - Aİ's UIMessage with custom metadata and data part types. */
 export type CherryUIMessage = UIMessage<CherryUIMessageMetadata, CherryDataPartTypes>
 
-/** Cherry Studio's UIMessageChunk — inferred from CherryUIMessage. */
+/** WAT GBT - Aİ's UIMessageChunk — inferred from CherryUIMessage. */
 export type CherryUIMessageChunk = InferUIMessageChunk<CherryUIMessage>
 
 // Re-export AI SDK part types for convenience

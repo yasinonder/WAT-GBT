@@ -4081,8 +4081,8 @@ describe('Sessions', () => {
   })
 
   it.each([
-    { builtinRole: 'assistant' as const, name: 'Cherry Assistant' },
-    { builtinRole: 'support' as const, name: 'Cherry Support' }
+    { builtinRole: 'assistant' as const, name: 'WAT Asistan' },
+    { builtinRole: 'support' as const, name: 'WAT Destek' }
   ])('deletes only sessions from the protected built-in $name group', async ({ builtinRole, name }) => {
     const onActiveAgentDeleted = vi.fn()
     preferenceMocks.values.set('agent.session.display_mode', 'agent')

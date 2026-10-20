@@ -75,7 +75,7 @@ const provider = (partial: Partial<Provider> = {}): Provider => ({
 const projection = () => ({
   ...createDeepSeekHarnessDirectIdentity('anthropic', 'anthropic-messages'),
   credentialValue: 'sk-sensitive',
-  displayName: 'Cherry Studio: Anthropic',
+  displayName: 'WAT GBT - Aİ: Anthropic',
   protocol: 'anthropic-messages' as const,
   baseUrl: 'https://api.anthropic.com',
   model: model(),

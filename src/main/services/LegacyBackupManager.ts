@@ -224,7 +224,7 @@ class BackupManager {
     return {
       version: DIRECT_BACKUP_VERSION,
       timestamp: Date.now(),
-      appName: 'Cherry Studio',
+      appName: 'WAT GBT - Aİ',
       appVersion: app.getVersion(),
       platform: process.platform,
       arch: process.arch,
@@ -263,7 +263,7 @@ class BackupManager {
   }
 
   private createBackupFileName(): string {
-    return `cherry-studio.${dayjs().format('YYYYMMDDHHmmssSSS')}.${getHostname() || 'unknown'}.${getDeviceType() || 'unknown'}.zip`
+    return `wat-gbt-ai.${dayjs().format('YYYYMMDDHHmmssSSS')}.${getHostname() || 'unknown'}.${getDeviceType() || 'unknown'}.zip`
   }
 
   private createRemoteCleanupSignal(signal?: AbortSignal): AbortSignal {
@@ -284,7 +284,9 @@ class BackupManager {
       signal?.throwIfAborted()
       const suffix = `.${getHostname() || 'unknown'}.${getDeviceType() || 'unknown'}.zip`
       const files = (await listFiles(signal)).filter(
-        (file) => file.fileName.startsWith('cherry-studio.') && file.fileName.endsWith(suffix)
+        (file) =>
+          (file.fileName.startsWith('wat-gbt-ai.') || file.fileName.startsWith('cherry-studio.')) &&
+          file.fileName.endsWith(suffix)
       )
       for (const file of files.slice(maxBackups)) {
         await this.deleteWithRetry(file.fileName, deleteFile, signal, deleteAttempts)
@@ -743,7 +745,7 @@ class BackupManager {
 
       if (!(await fs.pathExists(path.join(extractionDir, 'metadata.json')))) {
         throw new Error(
-          `Unsupported v1 backup. Cherry Studio v2 can only restore backup version ${DIRECT_BACKUP_VERSION}.`
+          `Unsupported v1 backup. WAT GBT - Aİ v2 can only restore backup version ${DIRECT_BACKUP_VERSION}.`
         )
       }
 
@@ -772,13 +774,13 @@ class BackupManager {
 
     const existingJournal = readRestoreJournal()
     if (existingJournal.kind === 'corrupt') {
-      throw new Error('A corrupt restore journal already exists. Restart Cherry Studio before trying again.')
+      throw new Error('A corrupt restore journal already exists. Restart WAT GBT - Aİ before trying again.')
     }
     if (
       existingJournal.kind === 'ok' &&
       (existingJournal.journal.state === 'staged' || existingJournal.journal.state === 'promoting')
     ) {
-      throw new Error('Another restore is already pending. Restart Cherry Studio before trying again.')
+      throw new Error('Another restore is already pending. Restart WAT GBT - Aİ before trying again.')
     }
 
     // No restore is pending: terminal journals have already released their
@@ -868,7 +870,7 @@ class BackupManager {
       const chain = this.validateStagedDatabase(workDatabase)
       if (!this.isChainBundledPrefix(chain)) {
         throw new Error(
-          `${BACKUP_NEWER_VERSION_ERROR_CODE}: This backup was created by a newer version of Cherry Studio (database is ahead of this version) and cannot be restored here. Please update Cherry Studio and try again. Backup appVersion: ${metadata.appVersion ?? 'unknown'}, current: ${app.getVersion()}.`
+          `${BACKUP_NEWER_VERSION_ERROR_CODE}: This backup was created by a newer version of WAT GBT - Aİ (database is ahead of this version) and cannot be restored here. Please update WAT GBT - Aİ and try again. Backup appVersion: ${metadata.appVersion ?? 'unknown'}, current: ${app.getVersion()}.`
         )
       }
       onProgress({ stage: 'restoring_database', progress: 95, total: 100 })
@@ -987,17 +989,17 @@ class BackupManager {
   private async readDirectBackupMetadata(extractionDir: string): Promise<DirectBackupMetadata> {
     const raw = (await fs.readJson(path.join(extractionDir, 'metadata.json'))) as Record<string, unknown>
 
-    if (!raw || typeof raw !== 'object' || raw.appName !== 'Cherry Studio') {
-      throw new Error('This backup file is not from Cherry Studio and cannot be restored')
+    if (!raw || typeof raw !== 'object' || (raw.appName !== 'WAT GBT - Aİ' && raw.appName !== 'Cherry Studio')) {
+      throw new Error('This backup file is not from WAT GBT - Aİ and cannot be restored')
     }
     if (typeof raw.version === 'number' && raw.version > DIRECT_BACKUP_VERSION) {
       throw new Error(
-        `${BACKUP_NEWER_VERSION_ERROR_CODE}: This backup was created by a newer version of Cherry Studio (backup version ${String(raw.version)}) and cannot be restored on this version (supports ${DIRECT_BACKUP_VERSION}). Please update Cherry Studio and try again.`
+        `${BACKUP_NEWER_VERSION_ERROR_CODE}: This backup was created by a newer version of WAT GBT - Aİ (backup version ${String(raw.version)}) and cannot be restored on this version (supports ${DIRECT_BACKUP_VERSION}). Please update WAT GBT - Aİ and try again.`
       )
     }
     if (raw.version !== DIRECT_BACKUP_VERSION) {
       throw new Error(
-        `Unsupported backup version ${String(raw.version)}. Cherry Studio v2 can only restore backup version ${DIRECT_BACKUP_VERSION}.`
+        `Unsupported backup version ${String(raw.version)}. WAT GBT - Aİ v2 can only restore backup version ${DIRECT_BACKUP_VERSION}.`
       )
     }
 
@@ -1292,7 +1294,7 @@ class BackupManager {
    */
   async restoreFromWebdav(_: Electron.IpcMainInvokeEvent, webdavConfig: WebDavConfig) {
     return this.runBackupWorkflow(async () => {
-      const filename = webdavConfig.fileName || 'cherry-studio.backup.zip'
+      const filename = webdavConfig.fileName || 'wat-gbt-ai.backup.zip'
       const webdavClient = this.getWebDavInstance(webdavConfig)
       const downloadDir = await this.createOperationDir('webdav-download')
       const backupedFilePath = path.join(downloadDir, path.basename(filename))
@@ -1319,7 +1321,7 @@ class BackupManager {
    */
   async restoreFromS3(_: Electron.IpcMainInvokeEvent, s3Config: S3Config) {
     return this.runBackupWorkflow(async () => {
-      const filename = s3Config.fileName || 'cherry-studio.backup.zip'
+      const filename = s3Config.fileName || 'wat-gbt-ai.backup.zip'
 
       logger.debug(`Starting restore from S3: ${filename}`)
 

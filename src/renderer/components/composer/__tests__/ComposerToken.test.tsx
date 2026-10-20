@@ -352,7 +352,7 @@ describe('ComposerToken', () => {
         token={{
           id: 'link:1',
           kind: 'link',
-          label: 'Cherry Studio',
+          label: 'WAT GBT - Aİ',
           promptText: 'https://cherry-ai.com'
         }}
       />

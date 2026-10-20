@@ -16,7 +16,7 @@ import { generateUserAgent, getClientId } from '@main/utils/systemInfo'
 import type { RetryPolicy } from '@shared/data/api/schemas/jobs'
 import { UpgradeChannel } from '@shared/data/preference/preferenceTypes'
 import type { AppEdition } from '@shared/types/appEdition'
-import { APP_NAME } from '@shared/utils/constants'
+import { APP_HTTP_NAME } from '@shared/utils/constants'
 import {
   hasMultiLanguageReleaseNotes,
   localizeReleaseNotes,
@@ -29,7 +29,7 @@ const logger = loggerService.withContext('AppUpdaterService')
 
 type ReleaseRegion = 'cn' | 'global'
 
-export const RELEASE_HISTORY_URL = 'https://releases.cherry-ai.com/release-history.json'
+export const RELEASE_HISTORY_URL = 'https://github.com/yasinonder/WAT-GBT/releases/latest/download/release-history.json'
 const RELEASE_HISTORY_TIMEOUT_MS = 10_000
 const RELEASE_HISTORY_MAX_BYTES = 1024 * 1024
 
@@ -42,7 +42,7 @@ function getUpdateHeaders({ region, edition }: { region: ReleaseRegion; edition:
     'User-Agent': generateUserAgent(),
     'Cache-Control': 'no-cache',
     'Client-Id': getClientId(),
-    'App-Name': APP_NAME,
+    'App-Name': APP_HTTP_NAME,
     'App-Version': `v${app.getVersion()}`,
     OS: process.platform,
     'X-Edition': edition,

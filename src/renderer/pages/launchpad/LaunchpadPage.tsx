@@ -14,6 +14,7 @@ import miniAppIcon from '@renderer/assets/images/apps/launchpad-mini-app.svg'
 import notesIcon from '@renderer/assets/images/apps/launchpad-notes.svg'
 import paintingsIcon from '@renderer/assets/images/apps/launchpad-paintings.svg'
 import translateIcon from '@renderer/assets/images/apps/launchpad-translate.svg'
+import AppLogo from '@renderer/assets/images/logo.png'
 import { CommandContextMenu, type CommandContextMenuExtraItem } from '@renderer/components/command'
 import SidebarShortcutIcon from '@renderer/components/icons/SidebarShortcutIcon'
 import App from '@renderer/components/MiniApp/MiniApp'
@@ -27,7 +28,7 @@ import type { SidebarAppId } from '@renderer/utils/sidebar'
 import { createSidebarShortcutTarget, getSidebarMenuPath, SIDEBAR_SHORTCUT_PROVIDER_IDS } from '@renderer/utils/sidebar'
 import type { MiniApp as MiniAppType } from '@shared/data/types/miniApp'
 
-const BASE_URL = 'https://www.cherry-ai.com/'
+const BASE_URL = 'https://github.com/yasinonder/WAT-GBT'
 
 const LAUNCHPAD_GRID_CLASS = 'grid grid-cols-6 justify-items-center gap-2 px-2'
 const LAUNCHPAD_ITEM_CLASS = 'mx-auto w-[92px]'
@@ -285,6 +286,14 @@ export default function LaunchpadPage() {
     <div className="flex h-full min-h-0 flex-col bg-background">
       <Scrollbar className="min-h-0 flex-1">
         <div className="mx-auto flex w-full max-w-180 flex-col gap-5 py-12.5">
+          <header className="flex items-center gap-4 px-9 pb-4">
+            <img src={AppLogo} alt="" className="size-16 shrink-0 rounded-xl object-contain" />
+            <div className="min-w-0">
+              <h1 className="text-2xl font-bold tracking-tight text-foreground">{t('app.brand.name')}</h1>
+              <p className="mt-1 text-sm font-medium text-muted-foreground">{t('app.brand.organization')}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{t('app.brand.tagline')}</p>
+            </div>
+          </header>
           <section className="flex flex-col gap-2">
             <h2 className="m-0 px-9 py-0 font-semibold text-[14px] text-foreground opacity-80">
               {t('launchpad.apps')}

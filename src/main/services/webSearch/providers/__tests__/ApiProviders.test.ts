@@ -218,7 +218,7 @@ describe('main web search API providers', () => {
             "content-type": "application/json",
             "http-referer": "https://cherry-ai.com",
             "x-api-key": "exa-key",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "POST",
           "url": "https://api.exa.ai/search",
@@ -272,7 +272,7 @@ describe('main web search API providers', () => {
             "authorization": "Bearer tavily-key",
             "content-type": "application/json",
             "http-referer": "https://cherry-ai.com",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "POST",
           "url": "https://api.tavily.com/search",
@@ -326,7 +326,7 @@ describe('main web search API providers', () => {
         'content-type': 'application/json',
         'http-referer': 'https://cherry-ai.com',
         'x-api-key': 'parallel-key',
-        'x-title': 'Cherry Studio'
+        'x-title': 'WAT GBT - Aİ'
       },
       method: 'POST',
       url: 'https://api.parallel.ai/v1/search'
@@ -400,7 +400,7 @@ describe('main web search API providers', () => {
         accept: 'application/json',
         'http-referer': 'https://cherry-ai.com',
         'x-api-key': 'serply-key',
-        'x-title': 'Cherry Studio'
+        'x-title': 'WAT GBT - Aİ'
       },
       method: 'GET',
       url: 'https://api.serply.io/v1/search/q=latest%20web%20research&num=4'
@@ -437,35 +437,35 @@ describe('main web search API providers', () => {
       })
     )
 
-    const result = await provider.searchKeywords('Cherry Studio', runtimeConfig)
+    const result = await provider.searchKeywords('WAT GBT - Aİ', runtimeConfig)
 
     expect(toRequestSnapshot(fetchMock.mock.lastCall as [string, RequestInit | undefined])).toEqual({
-      body: { query: 'Cherry Studio', count: 4 },
+      body: { query: 'WAT GBT - Aİ', count: 4 },
       headers: {
         accept: 'application/json',
         authorization: 'Bearer deepseek-key',
         'content-type': 'application/json',
         'http-referer': 'https://cherry-ai.com',
-        'x-title': 'Cherry Studio'
+        'x-title': 'WAT GBT - Aİ'
       },
       method: 'POST',
       url: 'https://api.deepseek.com/v1/tools/search'
     })
     expect(result).toEqual({
       capability: 'searchKeywords',
-      inputs: ['Cherry Studio'],
+      inputs: ['WAT GBT - Aİ'],
       providerId: 'deepseek',
-      query: 'Cherry Studio',
+      query: 'WAT GBT - Aİ',
       results: [
         {
           content: 'DeepSeek Summary',
-          sourceInput: 'Cherry Studio',
+          sourceInput: 'WAT GBT - Aİ',
           title: 'DeepSeek Result Title',
           url: 'https://example.com/deepseek-result'
         },
         {
           content: 'DeepSeek Snippet',
-          sourceInput: 'Cherry Studio',
+          sourceInput: 'WAT GBT - Aİ',
           title: 'DeepSeek Snippet Only',
           url: 'https://snippet.example/page'
         }
@@ -498,7 +498,7 @@ describe('main web search API providers', () => {
         authorization: 'Bearer deepseek-key',
         'content-type': 'application/json',
         'http-referer': 'https://cherry-ai.com',
-        'x-title': 'Cherry Studio'
+        'x-title': 'WAT GBT - Aİ'
       },
       method: 'POST',
       url: 'https://api.deepseek.com/v1/tools/fetch'
@@ -524,7 +524,7 @@ describe('main web search API providers', () => {
       })
     )
 
-    await expect(provider.searchKeywords('Cherry Studio', runtimeConfig)).rejects.toThrow(
+    await expect(provider.searchKeywords('WAT GBT - Aİ', runtimeConfig)).rejects.toThrow(
       /deepseek request failed: HTTP 402 Not Enough Credits/
     )
   })
@@ -613,7 +613,7 @@ describe('main web search API providers', () => {
             "authorization": "Bearer jina-key",
             "http-referer": "https://cherry-ai.com",
             "x-retain-images": "none",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "GET",
           "url": "https://r.jina.ai/https://example.com/article",
@@ -1023,7 +1023,7 @@ describe('main web search API providers', () => {
           "headers": {
             "authorization": "Basic YWxpY2U6c2VjcmV0",
             "http-referer": "https://cherry-ai.com",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "GET",
           "url": "https://searx.example/search?q=hello&language=auto&format=json&engines=google%2Cbing",
@@ -1059,7 +1059,7 @@ describe('main web search API providers', () => {
           "body": null,
           "headers": {
             "http-referer": "https://cherry-ai.com",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "GET",
           "url": "https://searx.example/config",
@@ -1068,7 +1068,7 @@ describe('main web search API providers', () => {
           "body": null,
           "headers": {
             "http-referer": "https://cherry-ai.com",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "GET",
           "url": "https://searx.example/search?q=hello&language=auto&format=json&engines=duckduckgo",
@@ -1538,7 +1538,7 @@ describe('main web search API providers', () => {
             "authorization": "Bearer bocha-key",
             "content-type": "application/json",
             "http-referer": "https://cherry-ai.com",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "POST",
           "url": "https://api.bochaai.com/v1/web-search",
@@ -1617,7 +1617,7 @@ describe('main web search API providers', () => {
             "authorization": "Bearer querit-key",
             "content-type": "application/json",
             "http-referer": "https://cherry-ai.com",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "POST",
           "url": "https://api.querit.ai/v1/search",
@@ -1841,7 +1841,7 @@ describe('main web search API providers', () => {
             "authorization": "Bearer zhipu-key",
             "content-type": "application/json",
             "http-referer": "https://cherry-ai.com",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "POST",
           "url": "https://open.bigmodel.cn/api/paas/v4/tools",
@@ -1969,7 +1969,7 @@ describe('main web search API providers', () => {
             "content-type": "application/json",
             "http-referer": "https://cherry-ai.com",
             "x-api-key": "test-key",
-            "x-title": "Cherry Studio",
+            "x-title": "WAT GBT - Aİ",
           },
           "method": "POST",
           "url": "https://mcp.exa.ai/mcp",
@@ -2367,7 +2367,7 @@ describe('main web search API providers', () => {
               "authorization": "Bearer firecrawl-key",
               "content-type": "application/json",
               "http-referer": "https://cherry-ai.com",
-              "x-title": "Cherry Studio",
+              "x-title": "WAT GBT - Aİ",
             },
             "method": "POST",
             "url": "https://api.firecrawl.example/v2/search",
@@ -2488,7 +2488,7 @@ describe('main web search API providers', () => {
               "authorization": "Bearer firecrawl-key",
               "content-type": "application/json",
               "http-referer": "https://cherry-ai.com",
-              "x-title": "Cherry Studio",
+              "x-title": "WAT GBT - Aİ",
             },
             "method": "POST",
             "url": "https://api.firecrawl.example/v2/scrape",

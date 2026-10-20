@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest'
 
-import { mergeHeaders } from '../http'
+import { defaultAppHeaders, mergeHeaders } from '../http'
+
+describe('defaultAppHeaders', () => {
+  it('identifies WAT with HTTP-safe values even though the display name uses Turkish characters', () => {
+    const headers = new Headers(defaultAppHeaders())
+
+    expect(headers.get('x-title')).toBe('WAT GBT - AI')
+    expect(headers.get('http-referer')).toBe('https://github.com/yasinonder/WAT-GBT')
+  })
+})
 
 describe('mergeHeaders', () => {
   it('collapses case variants of the same header so the last writer wins', () => {

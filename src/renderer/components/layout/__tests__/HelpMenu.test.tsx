@@ -137,9 +137,9 @@ describe('HelpMenu', () => {
   })
 
   it.each([
-    ['zh-CN', 'https://docs.cherryai.com.cn/'],
-    ['zh-TW', 'https://docs.cherryai.com.cn/'],
-    ['en-US', 'https://docs.cherryai.com.cn/docs/en-us']
+    ['zh-CN', 'https://github.com/yasinonder/WAT-GBT#kullanım'],
+    ['zh-TW', 'https://github.com/yasinonder/WAT-GBT#kullanım'],
+    ['en-US', 'https://github.com/yasinonder/WAT-GBT#kullanım']
   ])('opens the language-specific guide in app content for %s', async (language, expectedUrl) => {
     mocks.language = language
     render(<HelpMenu layout="full" onFeedbackClick={mocks.openFeedback} />)
@@ -150,7 +150,7 @@ describe('HelpMenu', () => {
     await waitFor(() =>
       expect(mocks.openSmartMiniApp).toHaveBeenCalledWith(
         expect.objectContaining({
-          appId: 'cherrystudio-guide',
+          appId: 'wat-gbt-ai-guide',
           name: 'help.guide',
           url: expectedUrl
         })

@@ -403,7 +403,7 @@ describe('classifyError', () => {
         name: 'NonVisionImageOcrError',
         i18nKey: 'image_unreadable_for_non_vision_model',
         message:
-          "The selected model isn't configured for image input, and Cherry Studio couldn't extract readable text from the attachment. Enable Vision for this model in Provider Settings, choose another vision-capable model, or remove the image and try again."
+          "The selected model isn't configured for image input, and WAT GBT - Aİ couldn't extract readable text from the attachment. Enable Vision for this model in Provider Settings, choose another vision-capable model, or remove the image and try again."
       }),
       'anthropic'
     )

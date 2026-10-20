@@ -1418,11 +1418,11 @@ describe('classic layout entity resource list actions', () => {
     expect(agentDataMocks.getActiveResource).toHaveBeenCalledWith('/agents/agent-1')
   })
 
-  it('deletes only sessions for the built-in Cherry Assistant in the classic layout', async () => {
+  it('deletes only sessions for the built-in WAT Asistan in the classic layout', async () => {
     agentDataMocks.agents = [
       {
         id: 'agent-1',
-        name: 'Cherry Assistant',
+        name: 'WAT Asistan',
         orderKey: 'a',
         configuration: { builtin_role: 'assistant' },
         model: 'anthropic::claude-sonnet-4',
@@ -1474,7 +1474,7 @@ describe('classic layout entity resource list actions', () => {
     agentDataMocks.agents = [
       {
         id: 'agent-1',
-        name: 'Cherry Assistant',
+        name: 'WAT Asistan',
         orderKey: 'a',
         configuration: { builtin_role: 'assistant' },
         model: 'anthropic::claude-sonnet-4',
