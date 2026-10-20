@@ -1,0 +1,15 @@
+WAT GBT - Aİ
+Modified distribution — branding changes dated 2026-10-20.
+Source: https://github.com/yasinonder/WAT-GBT
+
+This application is based on Cherry Studio, developed by CherryHQ and its
+contributors: https://github.com/CherryHQ/cherry-studio
+Original copyright, license notices and third-party package licenses remain
+with their respective authors. WAT branding does not imply upstream endorsement.
+
+The application remains licensed under GNU Affero General Public License v3.0.
+See the accompanying LICENSE. This software is provided WITHOUT ANY WARRANTY;
+you may copy, modify and redistribute it under that license. Corresponding
+source, including these changes, is available at the source URL above.
+
+The WAT logo was supplied by the repository owner for this customization.
