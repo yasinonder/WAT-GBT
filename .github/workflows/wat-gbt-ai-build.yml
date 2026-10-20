@@ -1,0 +1,38 @@
+name: WAT - GBT AI Windows x64
+on:
+  push:
+    branches:
+      - wat-gbt-ai-v1
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  portable:
+    runs-on: windows-2025
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.12.0'
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Verify independent app identity
+        run: pnpm run brand:verify
+      - name: Generate WAT logos and Windows icon
+        run: pnpm run brand:assets
+      - name: Build renderer and main process
+        run: pnpm run build
+      - name: Package Windows portable x64
+        run: pnpm exec electron-builder --win portable --x64 --publish never
+      - name: Publish unsigned portable candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: WAT-GBT-AI-Windows-x64-portable
+          path: dist/*portable.exe
+          if-no-files-found: error
+          retention-days: 14
