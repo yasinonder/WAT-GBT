@@ -19,10 +19,10 @@ const logger = loggerService.withContext('Preboot')
 
 export function getNormalizedExecutablePath(): string {
   if (isLinux && process.env.APPIMAGE) {
-    return path.join(path.dirname(process.env.APPIMAGE), 'cherry-studio.appimage')
+    return path.join(path.dirname(process.env.APPIMAGE), 'wat-gbt-ai.appimage')
   }
   if (isWin && isPortable) {
-    return path.join(process.env.PORTABLE_EXECUTABLE_DIR || '', 'cherry-studio-portable.exe')
+    return path.join(process.env.PORTABLE_EXECUTABLE_DIR || '', 'wat-gbt-ai-portable.exe')
   }
   return app.getPath('exe')
 }
