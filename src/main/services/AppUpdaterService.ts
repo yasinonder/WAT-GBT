@@ -27,6 +27,10 @@ import {
 
 const logger = loggerService.withContext('AppUpdaterService')
 
+// This independently branded build must never install upstream Cherry Studio updates.
+// Enable only after creating and signing a WAT-owned update feed.
+const WAT_GBT_DISABLE_UPDATES = true
+
 type ReleaseRegion = 'cn' | 'global'
 
 export const RELEASE_HISTORY_URL = 'https://releases.cherry-ai.com/release-history.json'
@@ -100,7 +104,7 @@ export class AppUpdaterService extends BaseService {
     // Packaged builds use app-update.yml generated from electron-builder.yml;
     // development uses the repository's dev-app-update.yml.
     autoUpdater.forceDevUpdateConfig = !app.isPackaged
-    autoUpdater.autoDownload = application.get('PreferenceService').get('app.dist.auto_update.enabled')
+    autoUpdater.autoDownload = !WAT_GBT_DISABLE_UPDATES && application.get('PreferenceService').get('app.dist.auto_update.enabled')
     // Never auto-install on quit - user must explicitly click "Install Now"
     // Auto-install on quit can cause issues: unexpected updates on restart,
     // corruption if system shuts down during install, or app uninstall on force shutdown
@@ -136,7 +140,7 @@ export class AppUpdaterService extends BaseService {
 
     // Development builds skip automatic checks but still support manual checks.
     // Portable builds do not perform update checks.
-    if (!app.isPackaged || this.isPortable()) {
+    if (!app.isPackaged || this.isPortable() || WAT_GBT_DISABLE_UPDATES) {
       return
     }
     this.scheduleNextUpdateCheck(INITIAL_CHECK_DELAY_MS)
@@ -251,7 +255,7 @@ export class AppUpdaterService extends BaseService {
     | { status: 'current'; currentVersion: string }
     | { status: 'available'; currentVersion: string; version: string }
   > {
-    if (this.isPortable()) return { status: 'unsupported' }
+    if (this.isPortable() || WAT_GBT_DISABLE_UPDATES) return { status: 'unsupported' }
     const { currentVersion, updateChannel, updateHeaders } = await this.getUpdateRequest()
     const updater = new ReleaseNotesUpdater()
     updater.logger = logger as Logger
@@ -269,6 +273,7 @@ export class AppUpdaterService extends BaseService {
   }
 
   public async getLatestReleaseNotes(): Promise<ReleaseNotesEntry | null> {
+    if (WAT_GBT_DISABLE_UPDATES) return null
     try {
       const { updateChannel, updateHeaders } = await this.getUpdateRequest()
       const updater = new ReleaseNotesUpdater()
@@ -298,6 +303,7 @@ export class AppUpdaterService extends BaseService {
   }
 
   public async getReleaseHistory(): Promise<ReleaseNotesEntry[] | null> {
+    if (WAT_GBT_DISABLE_UPDATES) return null
     const [history, latestRelease] = await Promise.all([this.fetchReleaseHistory(), this.getLatestReleaseNotes()])
 
     if (!history) {
@@ -330,7 +336,7 @@ export class AppUpdaterService extends BaseService {
   private async performUpdateCheck() {
     void application.get('AnalyticsService').trackAppUpdate()
 
-    if (this.isPortable()) {
+    if (this.isPortable() || WAT_GBT_DISABLE_UPDATES) {
       return {
         currentVersion: app.getVersion(),
         updateInfo: null
