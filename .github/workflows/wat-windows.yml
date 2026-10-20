@@ -51,8 +51,9 @@ jobs:
         shell: pwsh
         run: |
           $env:ELECTRON_RUN_AS_NODE = '1'
-          & .\dist\win-unpacked\WAT-GBT-AI.exe -e "const assert = require('node:assert/strict'); const path = require('node:path'); const Database = require(path.resolve('dist/win-unpacked/resources/app.asar/node_modules/better-sqlite3')); const db = new Database(':memory:'); assert.equal(db.prepare('SELECT 42 AS value').get().value, 42); db.close(); console.log('Packaged SQLite runtime passed');"
-          if ($LASTEXITCODE -ne 0) { throw 'Packaged SQLite runtime failed' }
+          $probe = "const assert = require('node:assert/strict'); const path = require('node:path'); const Database = require(path.resolve('dist/win-unpacked/resources/app.asar/node_modules/better-sqlite3')); const db = new Database(':memory:'); assert.equal(db.prepare('SELECT 42 AS value').get().value, 42); db.close(); console.log('Packaged SQLite runtime passed');"
+          $process = Start-Process -FilePath '.\dist\win-unpacked\WAT-GBT-AI.exe' -ArgumentList @('-e', ('"{0}"' -f $probe)) -NoNewWindow -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Packaged SQLite runtime failed: $($process.ExitCode)" }
 
       - name: Verify outputs and calculate checksums
         shell: pwsh
