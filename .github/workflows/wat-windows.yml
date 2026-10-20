@@ -44,6 +44,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Verify topic naming and affected chat consumers
+        run: pnpm exec vitest run --project main src/main/services/__tests__/TopicNamingService.test.ts src/main/ai/streamManager/context/__tests__/PersistentChatContextProvider.test.ts src/main/ai/streamManager/context/__tests__/AgentChatContextProvider.test.ts src/main/ai/streamManager/__tests__/AiStreamManager.pause.test.ts
+
       - name: Build Windows x64 installer and portable application
         run: pnpm build:win:x64 --publish never
 
@@ -69,13 +72,23 @@ jobs:
           } | Set-Content dist/SHA256SUMS.txt -Encoding utf8
           @("Commit: $env:GITHUB_SHA", "Run: https://github.com/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID", 'Windows x64 preview; application signing and interactive Windows acceptance testing remain pending.') | Set-Content dist/BUILD-INFO.txt -Encoding utf8
 
-      - name: Upload Windows packages
+      - name: Upload portable application
         uses: actions/upload-artifact@v7
         with:
-          name: WAT-GBT-AI-Windows-x64
+          name: WAT-GBT-AI-Windows-x64-Portable
+          path: |
+            dist/*-x64-portable.exe
+            dist/SHA256SUMS.txt
+            dist/BUILD-INFO.txt
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: WAT-GBT-AI-Windows-x64-Setup
           path: |
             dist/*-x64-setup.exe
-            dist/*-x64-portable.exe
             dist/SHA256SUMS.txt
             dist/BUILD-INFO.txt
           if-no-files-found: error
